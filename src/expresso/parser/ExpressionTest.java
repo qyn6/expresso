@@ -1,8 +1,8 @@
 package expresso.parser;
 
-import static org.junit.Assert.*;
+import java.util.concurrent.Future;
 
-import java.io.IOException;
+import javax.swing.JDialog;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -20,7 +20,7 @@ public class ExpressionTest {
     
     @Test
     public void testExpression() {
-        CharStream stream = new ANTLRInputStream("()");
+        CharStream stream = new ANTLRInputStream("(()()())()()()()");
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
         
@@ -29,5 +29,6 @@ public class ExpressionTest {
         ParseTree tree = parser.line();
         System.err.println(tree.toStringTree(parser));
         ((RuleContext)tree).inspect(parser);
+        
     }
 }

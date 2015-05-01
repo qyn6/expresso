@@ -20,4 +20,14 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLine(ExpressionParser.LineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#legal_expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLegal_expr(ExpressionParser.Legal_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#legal_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLegal_expr(ExpressionParser.Legal_exprContext ctx);
 }
