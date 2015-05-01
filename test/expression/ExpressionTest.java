@@ -1,8 +1,4 @@
-package expresso.parser;
-
-import java.util.concurrent.Future;
-
-import javax.swing.JDialog;
+package expression;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -15,6 +11,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.junit.Test;
+
+import expresso.parser.ExpressionBaseListener;
+import expresso.parser.ExpressionLexer;
+import expresso.parser.ExpressionListener;
+import expresso.parser.ExpressionParser;
+import expresso.parser.ExpressionParser.Legal_exprContext;
+import expresso.parser.ExpressionParser.LineContext;
 
 public class ExpressionTest {
     @Test(expected=AssertionError.class)
