@@ -19,7 +19,7 @@ public class ExpressionParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		CLOSED_PAREN=1, LEFT_PAREN=2, RIGHT_PAREN=3;
+		LEFT_PAREN=1, RIGHT_PAREN=2;
 	public static final int
 		RULE_line = 0, RULE_legal_expr = 1;
 	public static final String[] ruleNames = {
@@ -27,10 +27,10 @@ public class ExpressionParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, "'('", "')'"
+		null, "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "CLOSED_PAREN", "LEFT_PAREN", "RIGHT_PAREN"
+		null, "LEFT_PAREN", "RIGHT_PAREN"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -130,7 +130,7 @@ public class ExpressionParser extends Parser {
 			setState(7);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==CLOSED_PAREN || _la==LEFT_PAREN) {
+			while (_la==LEFT_PAREN) {
 				{
 				{
 				setState(4);
@@ -165,7 +165,6 @@ public class ExpressionParser extends Parser {
 		public Legal_exprContext legal_expr(int i) {
 			return getRuleContext(Legal_exprContext.class,i);
 		}
-		public TerminalNode CLOSED_PAREN() { return getToken(ExpressionParser.CLOSED_PAREN, 0); }
 		public Legal_exprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -185,42 +184,28 @@ public class ExpressionParser extends Parser {
 		enterRule(_localctx, 2, RULE_legal_expr);
 		int _la;
 		try {
-			setState(21);
-			switch (_input.LA(1)) {
-			case LEFT_PAREN:
-				enterOuterAlt(_localctx, 1);
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(12);
+			match(LEFT_PAREN);
+			setState(16);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==LEFT_PAREN) {
 				{
 				{
-				setState(12);
-				match(LEFT_PAREN);
-				setState(16);
+				setState(13);
+				legal_expr();
+				}
+				}
+				setState(18);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==CLOSED_PAREN || _la==LEFT_PAREN) {
-					{
-					{
-					setState(13);
-					legal_expr();
-					}
-					}
-					setState(18);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				setState(19);
-				match(RIGHT_PAREN);
-				}
-				}
-				break;
-			case CLOSED_PAREN:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(20);
-				match(CLOSED_PAREN);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			}
+			setState(19);
+			match(RIGHT_PAREN);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -235,14 +220,13 @@ public class ExpressionParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\5\32\4\2\t\2\4\3"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\30\4\2\t\2\4\3"+
 		"\t\3\3\2\7\2\b\n\2\f\2\16\2\13\13\2\3\2\3\2\3\3\3\3\7\3\21\n\3\f\3\16"+
-		"\3\24\13\3\3\3\3\3\5\3\30\n\3\3\3\2\2\4\2\4\2\2\32\2\t\3\2\2\2\4\27\3"+
-		"\2\2\2\6\b\5\4\3\2\7\6\3\2\2\2\b\13\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2\2\n"+
-		"\f\3\2\2\2\13\t\3\2\2\2\f\r\7\2\2\3\r\3\3\2\2\2\16\22\7\4\2\2\17\21\5"+
-		"\4\3\2\20\17\3\2\2\2\21\24\3\2\2\2\22\20\3\2\2\2\22\23\3\2\2\2\23\25\3"+
-		"\2\2\2\24\22\3\2\2\2\25\30\7\5\2\2\26\30\7\3\2\2\27\16\3\2\2\2\27\26\3"+
-		"\2\2\2\30\5\3\2\2\2\5\t\22\27";
+		"\3\24\13\3\3\3\3\3\3\3\2\2\4\2\4\2\2\27\2\t\3\2\2\2\4\16\3\2\2\2\6\b\5"+
+		"\4\3\2\7\6\3\2\2\2\b\13\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2\2\n\f\3\2\2\2\13"+
+		"\t\3\2\2\2\f\r\7\2\2\3\r\3\3\2\2\2\16\22\7\3\2\2\17\21\5\4\3\2\20\17\3"+
+		"\2\2\2\21\24\3\2\2\2\22\20\3\2\2\2\22\23\3\2\2\2\23\25\3\2\2\2\24\22\3"+
+		"\2\2\2\25\26\7\4\2\2\26\5\3\2\2\2\4\t\22";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

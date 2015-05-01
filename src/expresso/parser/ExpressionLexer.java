@@ -19,20 +19,20 @@ public class ExpressionLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		CLOSED_PAREN=1, LEFT_PAREN=2, RIGHT_PAREN=3;
+		LEFT_PAREN=1, RIGHT_PAREN=2;
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
 	public static final String[] ruleNames = {
-		"CLOSED_PAREN", "LEFT_PAREN", "RIGHT_PAREN"
+		"LEFT_PAREN", "RIGHT_PAREN"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, "'('", "')'"
+		null, "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "CLOSED_PAREN", "LEFT_PAREN", "RIGHT_PAREN"
+		null, "LEFT_PAREN", "RIGHT_PAREN"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -106,11 +106,10 @@ public class ExpressionLexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\5\20\b\1\4\2\t\2"+
-		"\4\3\t\3\4\4\t\4\3\2\3\2\3\2\3\3\3\3\3\4\3\4\2\2\5\3\3\5\4\7\5\3\2\2\17"+
-		"\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\3\t\3\2\2\2\5\f\3\2\2\2\7\16\3\2"+
-		"\2\2\t\n\5\5\3\2\n\13\5\7\4\2\13\4\3\2\2\2\f\r\7*\2\2\r\6\3\2\2\2\16\17"+
-		"\7+\2\2\17\b\3\2\2\2\3\2\2";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\4\13\b\1\4\2\t\2"+
+		"\4\3\t\3\3\2\3\2\3\3\3\3\2\2\4\3\3\5\4\3\2\2\n\2\3\3\2\2\2\2\5\3\2\2\2"+
+		"\3\7\3\2\2\2\5\t\3\2\2\2\7\b\7*\2\2\b\4\3\2\2\2\t\n\7+\2\2\n\6\3\2\2\2"+
+		"\3\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
