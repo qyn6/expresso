@@ -25,8 +25,5 @@ public interface Expression {
         throw new RuntimeException("unimplemented");
     }
     
-    // TODO Instance methods
-    public Expression multiply();
-    
-    public Expression add();
+  
 }
