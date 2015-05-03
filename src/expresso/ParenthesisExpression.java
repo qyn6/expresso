@@ -15,7 +15,7 @@ public class ParenthesisExpression {
     
     public static void main(String[] args) {
        
-    CharStream stream = new ANTLRInputStream("()(())((()()))");
+    CharStream stream = new ANTLRInputStream("(3 + x)*x*y*(3 + x + 3)");
     ExpressionLexer lexer = new ExpressionLexer(stream);
     TokenStream tokens = new CommonTokenStream(lexer);
     
