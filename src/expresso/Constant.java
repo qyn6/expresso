@@ -6,20 +6,23 @@ package expresso;
  */
 public class Constant implements Expression {
     
+    private double constant;
     /**
-     * create constant with int
-     * @param constant
-     */
-    public Constant(int constant){
-        
-    }
-    
-    /**
-     * create constant with doble
+     * create constant with double
      * @param constant
      */
     public Constant(double constant){
-        
+        this.constant = constant;
+    }
+
+    @Override
+    public Expression add(Expression e) {
+        throw new RuntimeException();
+    }
+
+    @Override
+    public Expression multiply(Expression e) {
+        throw new RuntimeException();
     }
 
 
