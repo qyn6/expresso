@@ -5,9 +5,19 @@ package expresso;
  */
 public class Variable implements Expression {
     
-    private String var;
-    public Variable(String var) {
-        this.var = var;
+    private String e;
+    public Variable(String e) {
+        this.e = e;
     }
-
+    @Override
+    public Expression add(Expression e) {
+        throw new RuntimeException();
+    }
+    @Override
+    public Expression multiply(Expression e) {
+        throw new RuntimeException();
+        
+    }
+    
+    
 }
