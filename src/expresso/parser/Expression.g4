@@ -51,12 +51,16 @@ package expresso.parser;
  * For more information, see
  * http://www.antlr.org/wiki/display/ANTLR4/Parser+Rules#ParserRules-StartRulesandEOF
  */
-line        : (legal_expr | legal_paren) (OPERATION (legal_expr | legal_paren))* EOF;
-legal_expr	: (CHAR | DIGIT) (OPERATION (legal_expr | legal_paren))*;
-legal_paren	: LEFT_PAREN (legal_expr | legal_paren) RIGHT_PAREN;
+line        : legal EOF;
+legal		: constant|var|mul|add | parens;
+add			: (term|mul) ('+' (mul | term))+;
+mul			: term ('*' (term|mul))+;
+term		: constant|var|parens;
+parens		: LEFT_PAREN (constant|var|add|mul|parens) RIGHT_PAREN;
+constant	: DIGIT;
+var			: CHAR;
 CHAR		: [a-z]+;
 DIGIT		: [0-9]+;
-OPERATION	: '+' | '*';
 LEFT_PAREN  : '(';
 RIGHT_PAREN : ')';
 WS			: [ \t\r\n]+ -> skip ;

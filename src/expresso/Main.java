@@ -56,6 +56,7 @@ public class Main {
      * TODO
      */
     private static String handleExpression(String input) {
+        String out = "";
         CharStream stream = new ANTLRInputStream(input);
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
@@ -65,11 +66,7 @@ public class Main {
         System.err.println(tree.toStringTree(parser));
         ((RuleContext)tree).inspect(parser);
         
-        if (tree.getChildCount() == 3) {
-            System.out.println("three");
-        }
-        
-        return "";
+        return out;
     }
     
     /**

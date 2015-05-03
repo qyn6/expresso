@@ -21,23 +21,73 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitLine(ExpressionParser.LineContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExpressionParser#legal_expr}.
+	 * Enter a parse tree produced by {@link ExpressionParser#legal}.
 	 * @param ctx the parse tree
 	 */
-	void enterLegal_expr(ExpressionParser.Legal_exprContext ctx);
+	void enterLegal(ExpressionParser.LegalContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExpressionParser#legal_expr}.
+	 * Exit a parse tree produced by {@link ExpressionParser#legal}.
 	 * @param ctx the parse tree
 	 */
-	void exitLegal_expr(ExpressionParser.Legal_exprContext ctx);
+	void exitLegal(ExpressionParser.LegalContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExpressionParser#legal_paren}.
+	 * Enter a parse tree produced by {@link ExpressionParser#add}.
 	 * @param ctx the parse tree
 	 */
-	void enterLegal_paren(ExpressionParser.Legal_parenContext ctx);
+	void enterAdd(ExpressionParser.AddContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExpressionParser#legal_paren}.
+	 * Exit a parse tree produced by {@link ExpressionParser#add}.
 	 * @param ctx the parse tree
 	 */
-	void exitLegal_paren(ExpressionParser.Legal_parenContext ctx);
+	void exitAdd(ExpressionParser.AddContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#mul}.
+	 * @param ctx the parse tree
+	 */
+	void enterMul(ExpressionParser.MulContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#mul}.
+	 * @param ctx the parse tree
+	 */
+	void exitMul(ExpressionParser.MulContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(ExpressionParser.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(ExpressionParser.TermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#parens}.
+	 * @param ctx the parse tree
+	 */
+	void enterParens(ExpressionParser.ParensContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#parens}.
+	 * @param ctx the parse tree
+	 */
+	void exitParens(ExpressionParser.ParensContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstant(ExpressionParser.ConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstant(ExpressionParser.ConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#var}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar(ExpressionParser.VarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#var}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar(ExpressionParser.VarContext ctx);
 }

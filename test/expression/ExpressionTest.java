@@ -16,8 +16,6 @@ import expresso.parser.ExpressionBaseListener;
 import expresso.parser.ExpressionLexer;
 import expresso.parser.ExpressionListener;
 import expresso.parser.ExpressionParser;
-import expresso.parser.ExpressionParser.Legal_exprContext;
-import expresso.parser.ExpressionParser.LineContext;
 
 /**
  * tests printing expression tree
