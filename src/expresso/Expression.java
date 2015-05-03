@@ -28,8 +28,20 @@ public interface Expression {
         throw new RuntimeException("unimplemented");
     }
     
+    /**
+     * Add this expression together with another valid expression, without any simplifications
+     * @param e1 - expression to add
+     * @return Expression that represents e + e1
+     */
     public Expression add(Expression e);
     
+    /**
+     * Multiply this expression together with another valid expression, without any simplifications
+     *     Edge case: There must always be a '*' symbol between expressions
+     *     Ex: (3 + x)(3 - x) is not valid, but (3 + x)*(3 - x) is.
+     * @param e1 - expression to multiply
+     * @return Expression that represents e * e1
+     */
     public Expression multiply(Expression e);
 
     
