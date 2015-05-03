@@ -9,17 +9,5 @@ public class Variable implements Expression {
     public Variable(String var) {
         this.var = var;
     }
-    
-    @Override
-    public Expression multiply() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Expression add() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }
