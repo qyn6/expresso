@@ -4,6 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+
+import expresso.parser.ExpressionLexer;
+import expresso.parser.ExpressionParser;
+
 /**
  * Console interface to the expression system.
  */
@@ -46,8 +56,20 @@ public class Main {
      * TODO
      */
     private static String handleExpression(String input) {
+        CharStream stream = new ANTLRInputStream(input);
+        ExpressionLexer lexer = new ExpressionLexer(stream);
+        TokenStream tokens = new CommonTokenStream(lexer);
+        ExpressionParser parser = new ExpressionParser(tokens);
         
-        throw new RuntimeException("unimplemented");
+        ParseTree tree = parser.line();
+        System.err.println(tree.toStringTree(parser));
+        ((RuleContext)tree).inspect(parser);
+        
+        if (tree.getChildCount() == 3) {
+            System.out.println("three");
+        }
+        
+        return "";
     }
     
     /**
