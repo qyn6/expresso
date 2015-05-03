@@ -64,4 +64,3 @@ OPERATION	: '+' | '*';
 LEFT_PAREN  : '(';
 RIGHT_PAREN : ')';
 WS			: [ \t\r\n]+ -> skip ;
-
