@@ -29,19 +29,5 @@ public interface Expression {
     }
     
     // TODO Instance methods
-    /**
-     * Multiply together two valid expressions, without any simplifications
-     * @param e1 - first expression
-     * @param e2 - second expression
-     * @return Expression that represents e1 * e2
-     */
-    public Expression multiply(Expression e1, Expression e2);
-
-    /**
-     * Add together two valid expressions, without any simplifications
-     * @param e1 - first expression
-     * @param e2 - second expression
-     * @return Expression that represents e1 + e2
-     */
-    public Expression add(Expression e1, Expression e2);
+    
 }
