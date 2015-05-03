@@ -19,6 +19,10 @@ import expresso.parser.ExpressionParser;
 import expresso.parser.ExpressionParser.Legal_exprContext;
 import expresso.parser.ExpressionParser.LineContext;
 
+/**
+ * tests printing expression tree
+ * @category no_didit
+ */
 public class ExpressionTest {
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -43,7 +47,7 @@ public class ExpressionTest {
         
     }
     
-    private static class ExpressionListenerPrintEverything extends ExpressionBaseListener {
+    public static class ExpressionListenerPrintEverything extends ExpressionBaseListener {
         @Override public void enterLine(ExpressionParser.LineContext ctx) { 
             System.out.println("enter line");
         }
