@@ -13,7 +13,7 @@ public interface Expression {
     // Datatype definition
     //  Expression = Variable( x : String)
     //    + Constant ( n : int, double )
-    //    + Operation(e1, e2: Expression)
+    //    + Operation(e1, e2: Expression) //TODO TA do we need to indicate that +, * are options? Or keep them as methods.
 
     /**
      * Parse an expression. All possible operations are represented by the following symbols:
