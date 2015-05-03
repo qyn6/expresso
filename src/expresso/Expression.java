@@ -29,7 +29,7 @@ public interface Expression {
     }
     
     public Expression add(Expression e);
-    // TODO Instance methods
+    
     public Expression multiply(Expression e);
 
     
