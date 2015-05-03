@@ -1,17 +1,27 @@
 package expresso;
 
+/**
+ * This class represents a constant number in the expression. 
+ *
+ */
 public class Constant implements Expression {
-
-    @Override
-    public Expression multiply() {
-        // TODO Auto-generated method stub
-        return null;
+    
+    /**
+     * create constant with int
+     * @param constant
+     */
+    public Constant(int constant){
+        
+    }
+    
+    /**
+     * create constant with doble
+     * @param constant
+     */
+    public Constant(double constant){
+        
     }
 
-    @Override
-    public Expression add() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
 
 }
