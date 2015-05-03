@@ -6,6 +6,8 @@ package expresso;
 public class Expressions {
     
     /**
+     * simplyfy first
+     * differentiate each term
      * Differentiate an expression with respect to a variable.
      * @param expression the expression to differentiate
      * @param variable the variable to differentiate by
