@@ -13,7 +13,7 @@ public interface Expression {
     // Datatype definition
     //  Expression = Variable( x : String)
     //    + Constant ( n : int, double )
-    //    + Operation(e1, e2: Expression, o: Operation)
+    //    + Operation(e1, e2: Expression)
 
     /**
      * Parse an expression.
@@ -26,7 +26,7 @@ public interface Expression {
     }
     
     // TODO Instance methods
-    public Expression multiply();
+    public Expression multiply(Expression e1, Expression e2);
     
-    public Expression add();
+    public Expression add(Expression e1, Expression e2);
 }
