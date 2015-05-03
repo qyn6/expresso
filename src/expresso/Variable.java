@@ -1,5 +1,5 @@
 package expresso;
 
-public class Variable {
+public class Variable implements Expression {
 
 }
