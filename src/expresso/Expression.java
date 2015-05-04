@@ -50,5 +50,5 @@ public interface Expression {
      */
     public Expression multiply(Expression e);
 
-    
+    public Expression differentiate(String x);
 }
