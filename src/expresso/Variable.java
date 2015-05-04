@@ -24,6 +24,20 @@ public class Variable implements Expression {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Variable)) return false;
+        Variable that = (Variable) obj;
+        return this.var.equals(that.var);
+    }
     
+    @Override
+    public String toString() {
+        return this.var;
+    }
     
+    @Override
+    public int hashCode() {
+        return this.var.hashCode();
+    }
 }

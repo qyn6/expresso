@@ -1,17 +1,40 @@
 package expresso;
 
 public class Multiply implements Expression {
-
-    @Override
-    public Expression add(Expression e) {
-        // TODO Auto-generated method stub
-        return null;
+    
+    private final Expression e1;
+    private final Expression e2;
+    
+    public Multiply(Expression e1, Expression e2) {
+        this.e1 = e1;
+        this.e2 = e2;
     }
 
     @Override
-    public Expression multiply(Expression e) {
+    public Expression differentiate(String var) {
+        return new Add(new Multiply(this.e1.differentiate(var), this.e2), new Multiply(this.e1, this.e2.differentiate(var)));
+    }
+
+    @Override
+    public Expression simplify() {
         // TODO Auto-generated method stub
         return null;
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Multiply)) return false;
+        Multiply that = (Multiply) obj;
+        return (this.e1.equals(that.e1) && this.e2.equals(that.e2));
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.e1.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return this.e1.toString() + "*" + this.e2.toString();
+    }
 }

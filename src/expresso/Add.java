@@ -26,5 +26,20 @@ public class Add implements Expression {
         return new Add(this.e1.differentiate(var), this.e2.differentiate(var));
     }
  
-
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Add)) return false;
+        Add that = (Add) obj;
+        return (this.e1.equals(that.e1) && this.e2.equals(that.e2));
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.e2.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return this.e1.toString() + "+" + this.e2.toString();
+    }
 }
