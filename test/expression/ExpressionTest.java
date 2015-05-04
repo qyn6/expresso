@@ -12,10 +12,12 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.junit.Test;
 
-import expresso.parser.ExpressionBaseListener;
-import expresso.parser.ExpressionLexer;
-import expresso.parser.ExpressionListener;
-import expresso.parser.ExpressionParser;
+
+
+import expresso.parser.WarmupBaseListener;
+import expresso.parser.WarmupLexer;
+import expresso.parser.WarmupListener;
+import expresso.parser.WarmupParser;
 
 /**
  * tests printing expression tree
@@ -30,35 +32,35 @@ public class ExpressionTest {
     @Test
     public void testExpression() {
         CharStream stream = new ANTLRInputStream("((())()(())())()()()()");
-        ExpressionLexer lexer = new ExpressionLexer(stream);
+        WarmupLexer lexer = new WarmupLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
         
-        ExpressionParser parser = new ExpressionParser(tokens);
+        WarmupParser parser = new WarmupParser(tokens);
         
         ParseTree tree = parser.line();
         System.err.println(tree.toStringTree(parser));
         ((RuleContext)tree).inspect(parser);
         
         ParseTreeWalker walker = new ParseTreeWalker();
-        ExpressionListener listener = new ExpressionListenerPrintEverything();
+        WarmupListener listener = new WarmupListenerPrintEverything();
         walker.walk(listener, tree);
         
     }
     
-    public static class ExpressionListenerPrintEverything extends ExpressionBaseListener {
-        @Override public void enterLine(ExpressionParser.LineContext ctx) { 
+    public static class WarmupListenerPrintEverything extends WarmupBaseListener {
+        @Override public void enterLine(WarmupParser.LineContext ctx) { 
             System.out.println("enter line");
         }
         
-        @Override public void exitLine(ExpressionParser.LineContext ctx) { 
+        @Override public void exitLine(WarmupParser.LineContext ctx) { 
             System.out.println("exit line");
         }
         
-        @Override public void enterLegal_expr(ExpressionParser.Legal_exprContext ctx) { 
+        @Override public void enterLegal_expr(WarmupParser.Legal_exprContext ctx) { 
             System.out.println("enter legal expr");
         }
         
-        @Override public void exitLegal_expr(ExpressionParser.Legal_exprContext ctx) { 
+        @Override public void exitLegal_expr(WarmupParser.Legal_exprContext ctx) { 
             System.out.println("exit legal expr");
         }
 

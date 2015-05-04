@@ -14,16 +14,16 @@ public class Constant implements Expression {
     public Constant(double constant){
         this.constant = constant;
     }
-
+    
     @Override
-    public Expression add(Expression e) {
-        throw new RuntimeException();
+    public Expression simplify() {
+        return new Constant(this.constant);
+    }
+    @Override
+    public Expression differentiate(String var) {
+        return new Constant(0);
     }
 
-    @Override
-    public Expression multiply(Expression e) {
-        throw new RuntimeException();
-    }
 
 
 }

@@ -5,19 +5,25 @@ package expresso;
  */
 public class Variable implements Expression {
     
-    private String e;
-    public Variable(String e) {
-        this.e = e;
+    private String var;
+    public Variable(String var) {
+        this.var = var;
+    }
+    
+    @Override
+    public Expression simplify() {
+        return new Variable(this.var);
     }
     @Override
-    public Expression add(Expression e) {
-        throw new RuntimeException();
+    public Expression differentiate(String varDiff) {
+        if (varDiff.equals(var)){
+            return new Constant(1);
+        }
+        else{
+            return new Constant(0);
+        }
     }
-    @Override
-    public Expression multiply(Expression e) {
-        throw new RuntimeException();
-        
-    }
+
     
     
 }

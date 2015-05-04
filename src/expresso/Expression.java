@@ -33,22 +33,22 @@ public interface Expression {
     public static Expression parse(String input) {
         throw new RuntimeException("unimplemented");
     }
+   
+    /**
+    * @return an expression equal to the input that is a sum of terms without parentheses,
+    *         where for all variables var_i in the expression, for all exponents e_i, the
+    *         term (var_1^e_1 x var_2^e_2 x ... x var_n^e_n) appears at most once; each
+    *         term may be multiplied by a non-zero, non-identity constant factor; and read
+    *         left-to-right, the largest exponent in each term is non-increasing
+    * @throws IllegalArgumentException if the expression is invalid
+    */
+    public Expression simplify();
     
     /**
-     * Add this expression together with another valid expression, without any simplifications
-     * @param e1 - expression to add
-     * @return Expression that represents e + e1
-     */
-    public Expression add(Expression e);
-    
-    /**
-     * Multiply this expression together with another valid expression, without any simplifications
-     *     Edge case: There must always be a '*' symbol between expressions
-     *     Ex: (3 + x)(3 - x) is not valid, but (3 + x)*(3 - x) is.
-     * @param e1 - expression to multiply
-     * @return Expression that represents e * e1
-     */
-    public Expression multiply(Expression e);
-
-    public Expression differentiate(String x);
+     * Differentiate an expression with respect to a variable.
+     * @param variable the variable to differentiate by
+     * @return expression's derivative with respect to variable; will be a valid expression
+     * @throws IllegalArgumentException if the expression or variable is invalid
+     **/
+    public Expression differentiate(String var);
 }
