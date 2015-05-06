@@ -14,6 +14,12 @@ import org.junit.Test;
 
 
 
+
+
+import expresso.Expression;
+import expresso.ExpressionsTreeListener;
+import expresso.parser.ExpressionLexer;
+import expresso.parser.ExpressionParser;
 import expresso.parser.WarmupBaseListener;
 import expresso.parser.WarmupLexer;
 import expresso.parser.WarmupListener;
@@ -30,7 +36,12 @@ public class ExpressionTest {
     }
     
     @Test
-    public void testExpression() {
+    public void testExpression1() {
+        Expression a = Expression.parse("3*(");
+    }
+    
+    @Test
+    public void testWarmup() {
         CharStream stream = new ANTLRInputStream("((())()(())())()()()()");
         WarmupLexer lexer = new WarmupLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);

@@ -1,8 +1,11 @@
 package expresso;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -42,23 +45,35 @@ public interface Expression {
      * @return expression AST for the input
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) {
+    public static Expression parse(String input) throws IllegalArgumentException{
         CharStream stream = new ANTLRInputStream(input);
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
         ExpressionParser parser = new ExpressionParser(tokens);
+        parser.removeErrorListeners();
+        parser.addErrorListener(new ExceptionThrowingErrorListener());
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(new ExceptionThrowingErrorListener());
         
         ParseTree tree = parser.line();
-        System.err.println(tree.toStringTree(parser)); //throw error somehow
-        ((RuleContext)tree).inspect(parser);
+        //System.err.println(tree.toStringTree(parser));
+        //((RuleContext)tree).inspect(parser);
         
-
         ParseTreeWalker walker = new ParseTreeWalker();
         ExpressionsTreeListener treeWalker = new ExpressionsTreeListener();
         walker.walk(treeWalker, tree);
         return treeWalker.exp;
     }
    
+    class ExceptionThrowingErrorListener extends BaseErrorListener {
+        @Override
+        public void syntaxError(Recognizer<?, ?> recognizer,
+                Object offendingSymbol, int line, int charPositionInLine,
+                String msg, RecognitionException e) {
+            throw new IllegalArgumentException(msg);
+        }
+    }
+    
     /**
     * @return an expression equal to the input that is a sum of terms without parentheses,
     *         where for all variables var_i in the expression, for all exponents e_i, the

@@ -17,6 +17,11 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
     private List<List<Expression>> terms = new ArrayList<List<Expression>>();
     private Stack<Expression> stack = new Stack<Expression>();
     
+    public void checkRep() {
+        if (stack == null) {
+            throw new RuntimeException();
+        }
+    }
     /**
      * {@inheritDoc}
      *
