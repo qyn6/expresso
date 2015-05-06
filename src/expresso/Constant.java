@@ -9,7 +9,7 @@ public class Constant implements Expression {
     private double constant;
     /**
      * create constant with double
-     * @param constant
+     * @param constant, must be non negative
      */
     public Constant(double constant){
         this.constant = constant;

@@ -6,6 +6,10 @@ package expresso;
 public class Variable implements Expression {
     
     private String var;
+    /**
+     * Represents a valid variable, any sequence of letters, cannot have whitespace between one variable
+     * @param var the variable in the expression
+     */
     public Variable(String var) {
         this.var = var;
     }
