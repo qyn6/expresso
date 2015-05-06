@@ -5,6 +5,11 @@ public class Multiply implements Expression {
     private final Expression e1;
     private final Expression e2;
     
+    /**
+     * Represents a multiplication of two valid expressions. 
+     * @param e1 first expression to be multiplied
+     * @param e2 second expression to be multiplied
+     */
     public Multiply(Expression e1, Expression e2) {
         this.e1 = e1;
         this.e2 = e2;

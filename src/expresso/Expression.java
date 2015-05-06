@@ -5,7 +5,7 @@ package expresso;
  * 
  *   + and * symbols (for addition and multiplication)
  *   nonnegative integer and floating-point numbers (e.g. 7 and 4.2)
- *   variables, which are any sequence of letters (e.g. y and foo)
+ *   variables, which are any sequence of letters (e.g. y and foo), cannot have whitespace between one variable
  *   parentheses (for grouping)
  */
 public interface Expression {
@@ -13,8 +13,9 @@ public interface Expression {
     // Datatype definition
     //  Expression = Variable( x : String)
     //    + Constant ( n : int, double )
-    //    + Operation(e1, e2: Expression) //TODO TA do we need to indicate that +, * are options? Or keep them as methods.
-
+    //    + Add (e1, e2: Expression)
+    //    + Multiply(e1, e2: Expression)
+    
     /*walking tree
      * do in order traversal
      * initiate constant or var when it sees it on the root with the children as values
