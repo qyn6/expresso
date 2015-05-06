@@ -43,7 +43,7 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAdd(ExpressionParser.AddContext ctx) {}
+	@Override public void enterAdd(ExpressionParser.AddContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

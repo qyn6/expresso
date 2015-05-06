@@ -60,7 +60,7 @@ parens		: LEFT_PAREN (constant|var|add|mul|parens) RIGHT_PAREN;
 constant	: DIGIT;
 var			: CHAR;
 CHAR		: [a-z]+;
-DIGIT		: [0-9]+;
+DIGIT		: ([0-9]* ('.' [0-9]+)) | [0-9]+;
 LEFT_PAREN  : '(';
 RIGHT_PAREN : ')';
 WS			: [ \t\r\n]+ -> skip ;

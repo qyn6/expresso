@@ -44,7 +44,6 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void exitLegal(ExpressionParser.LegalContext ctx) {
-        System.out.println(stack.size());
         exp = stack.pop();
     }
     /**
@@ -121,7 +120,7 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void enterConstant(ExpressionParser.ConstantContext ctx) {
-        System.out.println("created new Constant : " + Integer.parseInt(ctx.getChild(0).getText()));
+        System.out.println("created new Constant : " + Double.parseDouble(ctx.getChild(0).getText()));
     }
     /**
      * {@inheritDoc}
@@ -131,7 +130,7 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
     @Override public void exitConstant(ExpressionParser.ConstantContext ctx) {
 //        List<Expression> latest = terms.get(terms.size() - 1);
 //        latest.add();
-        stack.push(new Constant(Integer.parseInt(ctx.getText())));
+        stack.push(new Constant(Double.parseDouble(ctx.getText())));
     }
     /**
      * {@inheritDoc}

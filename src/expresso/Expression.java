@@ -56,7 +56,6 @@ public interface Expression {
         ParseTreeWalker walker = new ParseTreeWalker();
         ExpressionsTreeListener treeWalker = new ExpressionsTreeListener();
         walker.walk(treeWalker, tree);
-        System.out.println(treeWalker.exp + " is what I got");
         return treeWalker.exp;
     }
    

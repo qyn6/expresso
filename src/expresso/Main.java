@@ -58,7 +58,6 @@ public class Main {
      */
     private static String handleExpression(String input) {
         String out = "";
-
         Expression exp = Expression.parse(input); //make this current Expression
         
         if (exp != null) {
