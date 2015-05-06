@@ -1,5 +1,16 @@
 package expresso;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
+import expresso.parser.ExpressionLexer;
+import expresso.parser.ExpressionParser;
+
 /**
  * This class provides an interface to parse an expression containing:
  * 
@@ -23,7 +34,7 @@ public interface Expression {
      */
     /**
      * Parse an expression. All possible operations are represented by the following symbols:
-     *      +, -, *, ^
+     *      +,*
      *      Any input that does not have an operation character between two expressions is invalid.
      *      Ex: (3 + x)(3 - x) does not work. It has to be (3 + x)*(3 - x).
      * @param input expression to parse
@@ -31,7 +42,21 @@ public interface Expression {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static Expression parse(String input) {
-        throw new RuntimeException("unimplemented");
+        CharStream stream = new ANTLRInputStream(input);
+        ExpressionLexer lexer = new ExpressionLexer(stream);
+        TokenStream tokens = new CommonTokenStream(lexer);
+        ExpressionParser parser = new ExpressionParser(tokens);
+        
+        ParseTree tree = parser.line();
+        System.err.println(tree.toStringTree(parser)); //throw error somehow
+        ((RuleContext)tree).inspect(parser);
+        
+
+        ParseTreeWalker walker = new ParseTreeWalker();
+        ExpressionsTreeListener treeWalker = new ExpressionsTreeListener();
+        walker.walk(treeWalker, tree);
+        System.out.println(treeWalker.exp + " is what I got");
+        return treeWalker.exp;
     }
    
     /**

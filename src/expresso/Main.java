@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import expresso.parser.ExpressionLexer;
 import expresso.parser.ExpressionParser;
@@ -57,16 +58,14 @@ public class Main {
      */
     private static String handleExpression(String input) {
         String out = "";
-        CharStream stream = new ANTLRInputStream(input);
-        ExpressionLexer lexer = new ExpressionLexer(stream);
-        TokenStream tokens = new CommonTokenStream(lexer);
-        ExpressionParser parser = new ExpressionParser(tokens);
+
+        Expression exp = Expression.parse(input); //make this current Expression
         
-        ParseTree tree = parser.line();
-        System.err.println(tree.toStringTree(parser));
-        ((RuleContext)tree).inspect(parser);
-        
-        return out;
+        if (exp != null) {
+            return exp.toString();
+        } else {
+            return "error";
+        }
     }
     
     /**
