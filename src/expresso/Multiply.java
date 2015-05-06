@@ -40,6 +40,6 @@ public class Multiply implements Expression {
     
     @Override
     public String toString() {
-        return this.e1.toString() + "*" + this.e2.toString();
+        return "(" + this.e1.toString() + ")*(" + this.e2.toString()+")";
     }
 }

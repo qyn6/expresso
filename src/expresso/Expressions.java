@@ -15,7 +15,9 @@ public class Expressions {
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
     public static String differentiate(String expression, String variable) {
-        throw new RuntimeException("unimplemented");
+        Expression e = Expression.parse(expression);
+        Expression diffe = e.differentiate(variable);
+        return diffe.toString();
     }
     
     /**
