@@ -1,5 +1,9 @@
 package expresso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class represents a constant number in the expression. 
  *
@@ -44,5 +48,15 @@ public class Constant implements Expression {
     @Override
     public int hashCode() {
         return (int) this.constant;
+    }
+
+    @Override
+    public List<Double> getConstant() {
+        return new ArrayList<Double>(Arrays.asList( this.constant));
+    }
+
+    @Override
+    public List<String> getVariables() {
+        return new ArrayList<>(Arrays.asList(""));
     }
 }

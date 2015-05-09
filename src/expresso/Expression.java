@@ -1,5 +1,7 @@
 package expresso;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStream;
@@ -91,4 +93,8 @@ public interface Expression {
      * @throws IllegalArgumentException if the expression or variable is invalid
      **/
     public Expression differentiate(String var);
+    
+    public List<Double> getConstant();
+    
+    public List<String> getVariables();
 }

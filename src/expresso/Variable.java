@@ -1,5 +1,9 @@
 package expresso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class represents strings that are variables in the expression
  */
@@ -43,5 +47,15 @@ public class Variable implements Expression {
     @Override
     public int hashCode() {
         return this.var.hashCode();
+    }
+
+    @Override
+    public List<Double> getConstant() {
+        return new ArrayList<Double>(Arrays.asList(1.0));
+    }
+
+    @Override
+    public List<String> getVariables() {
+        return new ArrayList<String>(Arrays.asList(this.var));
     }
 }

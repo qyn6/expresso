@@ -1,5 +1,10 @@
 package expresso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 /**
  * String-based interface to the expression system.
  */
@@ -31,7 +36,17 @@ public class Expressions {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression) {
-        throw new RuntimeException("unimplemented");
+        Expression e = Expression.parse(expression);
+        List<Double> constants = e.getConstant();
+        List<String> variables = e.getVariables();
+        List<Term> terms = new ArrayList<>();
+        for (int i = 0; i<constants.size(); i++){
+            terms.add(new Term(constants.get(i), Arrays.asList(variables.get(0).split(""))));
+        }
+        
+        System.out.println(terms);
+        return "not implemented";
+        
     }
     
 }

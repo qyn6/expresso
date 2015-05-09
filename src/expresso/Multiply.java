@@ -1,5 +1,8 @@
 package expresso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Multiply implements Expression {
     
     private final Expression e1;
@@ -41,5 +44,27 @@ public class Multiply implements Expression {
     @Override
     public String toString() {
         return "(" + this.e1.toString() + ")*(" + this.e2.toString()+")";
+    }
+
+    @Override
+    public List<Double> getConstant() {
+        List<Double> newConstants = new ArrayList<Double>();
+        for (Double d1: e1.getConstant()){
+            for(Double d2:e2.getConstant()){
+                newConstants.add(d1*d2);
+            }
+        }
+        return newConstants;
+    }
+
+    @Override
+    public List<String> getVariables() {
+         List<String> newVariables = new ArrayList<String>();
+         for (String s1: e1.getVariables()){
+             for (String s2: e2.getVariables()){
+                 newVariables.add(s1+s2);
+             }
+         }
+         return newVariables;
     }
 }

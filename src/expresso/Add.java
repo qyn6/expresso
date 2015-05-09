@@ -1,5 +1,9 @@
 package expresso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class represents an addition of two expressions
  */
@@ -41,5 +45,19 @@ public class Add implements Expression {
     @Override
     public String toString() {
         return this.e1.toString() + "+" + this.e2.toString();
+    }
+
+    @Override
+    public List<Double> getConstant() {
+        List<Double> newConstants = new ArrayList<Double>(e1.getConstant());
+        newConstants.addAll(e2.getConstant());
+        return newConstants;
+    }
+
+    @Override
+    public List<String> getVariables() {
+        List<String> newVariables = new ArrayList<String>(e1.getVariables());
+        newVariables.addAll(e2.getVariables());
+        return newVariables;
     }
 }
