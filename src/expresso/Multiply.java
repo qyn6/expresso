@@ -1,6 +1,8 @@
 package expresso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Multiply implements Expression {
@@ -24,9 +26,17 @@ public class Multiply implements Expression {
     }
 
     @Override
-    public Expression simplify() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Term> simplify() {
+        List<Term> simplifyTerms = new ArrayList<>();
+        for (Term t1: e1.simplify()){
+            for (Term t2: e2.simplify()){
+                List<String> vars = new ArrayList<String>(t1.getVariables());
+                vars.addAll(t2.getVariables());
+                Collections.sort(vars);
+                simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
+            }
+        }
+        return simplifyTerms;
     }
     
     @Override
@@ -46,25 +56,5 @@ public class Multiply implements Expression {
         return "(" + this.e1.toString() + ")*(" + this.e2.toString()+")";
     }
 
-    @Override
-    public List<Double> getConstant() {
-        List<Double> newConstants = new ArrayList<Double>();
-        for (Double d1: e1.getConstant()){
-            for(Double d2:e2.getConstant()){
-                newConstants.add(d1*d2);
-            }
-        }
-        return newConstants;
-    }
-
-    @Override
-    public List<String> getVariables() {
-         List<String> newVariables = new ArrayList<String>();
-         for (String s1: e1.getVariables()){
-             for (String s2: e2.getVariables()){
-                 newVariables.add(s1+s2);
-             }
-         }
-         return newVariables;
-    }
+ 
 }

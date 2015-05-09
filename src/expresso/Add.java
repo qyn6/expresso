@@ -2,6 +2,7 @@ package expresso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,8 +23,35 @@ public class Add implements Expression {
     }
     
     @Override
-    public Expression simplify() {
-        return new Add(this.e1.simplify(), this.e2.simplify());
+    public List<Term> simplify() {
+        List<Term> simplifyTerms = new ArrayList<>();
+        System.out.println(e1);
+        System.out.println(e2);
+        for (Term t1: e1.simplify()){
+            boolean added = false;
+            for (Term t2: e2.simplify()){
+                List<String> vars1 = new ArrayList<>(t1.getVariables());
+                List<String> vars2 = new ArrayList<>(t2.getVariables());
+                //Collections.sort(vars1);
+                //Collections.sort(vars2);
+                
+                if (vars1.equals(vars2)){
+                    added = true;
+                    simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars1));
+                    if(simplifyTerms.contains(t1)){
+                        simplifyTerms.remove(t1);
+                    }if(simplifyTerms.contains(t2)){
+                        simplifyTerms.remove(t2);
+                    }
+                }else{
+                    simplifyTerms.add(t2);
+                    simplifyTerms.add(t1);
+                }
+            }
+            
+        }
+        System.out.println(simplifyTerms);
+        return simplifyTerms;
     }
     @Override
     public Expression differentiate(String var) {
@@ -45,19 +73,5 @@ public class Add implements Expression {
     @Override
     public String toString() {
         return this.e1.toString() + "+" + this.e2.toString();
-    }
-
-    @Override
-    public List<Double> getConstant() {
-        List<Double> newConstants = new ArrayList<Double>(e1.getConstant());
-        newConstants.addAll(e2.getConstant());
-        return newConstants;
-    }
-
-    @Override
-    public List<String> getVariables() {
-        List<String> newVariables = new ArrayList<String>(e1.getVariables());
-        newVariables.addAll(e2.getVariables());
-        return newVariables;
     }
 }

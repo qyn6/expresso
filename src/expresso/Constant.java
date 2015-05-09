@@ -20,8 +20,8 @@ public class Constant implements Expression {
     }
     
     @Override
-    public Expression simplify() {
-        return new Constant(this.constant);
+    public List<Term> simplify() {
+        return new ArrayList<Term>(Arrays.asList(new Term(this.constant, Arrays.asList(""))));
     }
     @Override
     public Expression differentiate(String var) {
@@ -50,13 +50,5 @@ public class Constant implements Expression {
         return (int) this.constant;
     }
 
-    @Override
-    public List<Double> getConstant() {
-        return new ArrayList<Double>(Arrays.asList( this.constant));
-    }
-
-    @Override
-    public List<String> getVariables() {
-        return new ArrayList<>(Arrays.asList(""));
-    }
+  
 }

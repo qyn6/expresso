@@ -19,8 +19,8 @@ public class Variable implements Expression {
     }
     
     @Override
-    public Expression simplify() {
-        return new Variable(this.var);
+    public List<Term> simplify() {
+        return new ArrayList<Term>(Arrays.asList(new Term(1.0, Arrays.asList(this.var))));
     }
     @Override
     public Expression differentiate(String varDiff) {
@@ -49,13 +49,5 @@ public class Variable implements Expression {
         return this.var.hashCode();
     }
 
-    @Override
-    public List<Double> getConstant() {
-        return new ArrayList<Double>(Arrays.asList(1.0));
-    }
 
-    @Override
-    public List<String> getVariables() {
-        return new ArrayList<String>(Arrays.asList(this.var));
-    }
 }

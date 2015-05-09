@@ -125,7 +125,7 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void enterConstant(ExpressionParser.ConstantContext ctx) {
-        System.out.println("created new Constant : " + Double.parseDouble(ctx.getChild(0).getText()));
+        //System.out.println("created new Constant : " + Double.parseDouble(ctx.getChild(0).getText()));
     }
     /**
      * {@inheritDoc}
@@ -143,7 +143,7 @@ public class ExpressionsTreeListener extends ExpressionBaseListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override public void enterVar(ExpressionParser.VarContext ctx) {
-        System.out.println("created new Variable :" + ctx.getChild(0).getText());
+        //System.out.println("created new Variable :" + ctx.getChild(0).getText());
     }
     /**
      * {@inheritDoc}

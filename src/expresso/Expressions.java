@@ -2,7 +2,10 @@ package expresso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
@@ -37,15 +40,38 @@ public class Expressions {
      */
     public static String simplify(String expression) {
         Expression e = Expression.parse(expression);
-        List<Double> constants = e.getConstant();
-        List<String> variables = e.getVariables();
-        List<Term> terms = new ArrayList<>();
-        for (int i = 0; i<constants.size(); i++){
-            terms.add(new Term(constants.get(i), Arrays.asList(variables.get(0).split(""))));
+        List<Term> terms = new ArrayList<Term>(e.simplify());
+        Map<Integer, List<Term>> highestPower = new TreeMap<>();
+        
+        for (Term t: terms){
+            int max = 0;
+            List<String> vars = t.getVariables();
+            int count = 1;
+            for (int i = 0; i<vars.size()-1; i++){
+                if (vars.get(i+1).equals(i)){
+                    count ++;
+                }else{
+                    if(max<count){
+                        max = count;
+                    }
+                    count = 1;
+                }
+            }
+            if(highestPower.keySet().contains(max)){
+                highestPower.get(max).add(t);
+            }else{
+                highestPower.put(max, Arrays.asList(t));
+            }
         }
         
-        System.out.println(terms);
-        return "not implemented";
+        String simplifiedExp = "";
+        for (Integer key: highestPower.keySet()){
+            for (Term t: highestPower.get(key)){
+                simplifiedExp = t.toString() + simplifiedExp;
+            }
+        }
+        
+        return simplifiedExp;
         
     }
     

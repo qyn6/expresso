@@ -84,7 +84,7 @@ public interface Expression {
     *         left-to-right, the largest exponent in each term is non-increasing
     * @throws IllegalArgumentException if the expression is invalid
     */
-    public Expression simplify();
+    public List<Term> simplify();
     
     /**
      * Differentiate an expression with respect to a variable.
@@ -93,8 +93,5 @@ public interface Expression {
      * @throws IllegalArgumentException if the expression or variable is invalid
      **/
     public Expression differentiate(String var);
-    
-    public List<Double> getConstant();
-    
-    public List<String> getVariables();
+
 }

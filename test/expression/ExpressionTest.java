@@ -2,6 +2,8 @@ package expression;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -14,8 +16,10 @@ import org.junit.Test;
 import expresso.Add;
 import expresso.Constant;
 import expresso.Expression;
+import expresso.Expressions;
 import expresso.ExpressionsTreeListener;
 import expresso.Multiply;
+import expresso.Term;
 import expresso.Variable;
 import expresso.parser.ExpressionLexer;
 import expresso.parser.ExpressionParser;
@@ -168,7 +172,9 @@ public class ExpressionTest {
         ExpressionsTreeListener treeWalker = new ExpressionsTreeListener();
         walker.walk(treeWalker, tree);
         
+
         Expression expected = new Multiply( new Variable("y"), new Add(new Constant(3), new Variable("x")));
+        
         
         assertEquals(expected, treeWalker.exp);
 
@@ -176,7 +182,7 @@ public class ExpressionTest {
     
     @Test
     public void testParseNestedParenthesis(){
-        CharStream stream = new ANTLRInputStream("(x+3)*((y+2)*z)");
+        CharStream stream = new ANTLRInputStream("4*y*3*y");
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
         ExpressionParser parser = new ExpressionParser(tokens);
@@ -193,5 +199,18 @@ public class ExpressionTest {
         
         assertEquals(expected, treeWalker.exp);
 
+    }
+    
+    @Test
+    public void testSimplify(){
+        
+        //String answer = Expressions.simplify("x*x");
+        //System.out.println("ans:" + answer);
+        Expression e = Expression.parse("x+2+x");
+        List<Term> terms = e.simplify();
+        for (Term t: terms){
+            System.out.println(t.toString());
+        }
+        
     }
 }
