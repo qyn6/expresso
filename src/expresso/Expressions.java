@@ -37,7 +37,7 @@ public class Expressions {
         SimplifyExpression simplifyExpression = new SimplifyExpression();
         Expression simplifiedExpression = simplifyExpression.simplify(terms);
         
-        return simplifiedExpression.toString();
+        return simplifiedExpression.toString().replaceAll("\\(|\\)", "");
         
     }
     
