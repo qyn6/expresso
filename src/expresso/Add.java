@@ -23,45 +23,16 @@ public class Add implements Expression {
     @Override
     public List<Term> simplify() {
         List<Term> simplifyTerms = new ArrayList<>();
-        //System.out.println(e1);
-        //System.out.println(e2);
-        for (Term t1: e1.simplify()){
-            //boolean added = false;
-            for (Term t2: e2.simplify()){
-                List<String> vars = new ArrayList<>(t1.getVariables());
-                //List<String> vars2 = new ArrayList<>(t2.getVariables());
-                //Collections.sort(vars1);
-                //Collections.sort(vars2);
-                
-                if (t1.equals(t2)){
-                    //added = true;
-                    simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars));
-                    /*if(simplifyTerms.contains(t1)){
-                        simplifyTerms.remove(t1);
-                    }
-                    if(simplifyTerms.contains(t2)){
-                        simplifyTerms.remove(t2);
-                    }
-                }else{
-                    simplifyTerms.add(t2);
-                    simplifyTerms.add(t1);*/
-                }
-            }
-            
-        }
         for (Term t: e1.simplify()) {
-            if (!simplifyTerms.contains(t)) {
-                simplifyTerms.add(t);
-            }
+            simplifyTerms.add(t);
         }
         
         for (Term t: e2.simplify()) {
-            if (!simplifyTerms.contains(t)) {
-                simplifyTerms.add(t);
-            }
+            simplifyTerms.add(t);
         }
-        //System.out.println(simplifyTerms);
-        return simplifyTerms;
+        SimplifyExpression simplify = new SimplifyExpression();
+        
+        return simplify.add(simplifyTerms);
     }
     @Override
     public Expression differentiate(String var) {

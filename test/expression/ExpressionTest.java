@@ -181,7 +181,7 @@ public class ExpressionTest {
     
     @Test
     public void testParseNestedParenthesis(){
-        CharStream stream = new ANTLRInputStream("4*y*3*y");
+        CharStream stream = new ANTLRInputStream("(x+3)*((y+2)*z)");
         ExpressionLexer lexer = new ExpressionLexer(stream);
         TokenStream tokens = new CommonTokenStream(lexer);
         ExpressionParser parser = new ExpressionParser(tokens);
@@ -205,12 +205,13 @@ public class ExpressionTest {
         
         //String answer = Expressions.simplify("x*x");
         //System.out.println("ans:" + answer);
-        Expression e = Expression.parse("x*x*x+2+x+x+2+5+x+x*u+x+x*u");
-        SimplifyExpression simplifyExp = new SimplifyExpression(e);
-        /*List<Term> terms = e.simplify();
+        Expression e = Expression.parse("(x+3)*((x+2)*z)");
+        List<Term> terms = e.simplify();
+        SimplifyExpression simplifyExp = new SimplifyExpression();
+        /*
         for (Term t: terms){
             System.out.println(t.toString());
         }*/
-        System.out.println(simplifyExp.simplify());
+        System.out.println(simplifyExp.simplify(terms));
     }
 }

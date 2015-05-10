@@ -1,11 +1,6 @@
 package expresso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 
 /**
  * String-based interface to the expression system.
@@ -13,8 +8,6 @@ import java.util.TreeMap;
 public class Expressions {
     
     /**
-     * simplyfy first
-     * differentiate each term
      * Differentiate an expression with respect to a variable.
      * @param expression the expression to differentiate
      * @param variable the variable to differentiate by
@@ -39,39 +32,10 @@ public class Expressions {
      */
     public static String simplify(String expression) {
         Expression e = Expression.parse(expression);
-        /*List<Term> terms = new ArrayList<Term>(e.simplify());
-        Map<Integer, List<Term>> highestPower = new TreeMap<>();
         
-        for (Term t: terms){
-            int max = 0;
-            List<String> vars = t.getVariables();
-            int count = 1;
-            for (int i = 0; i<vars.size()-1; i++){
-                if (vars.get(i+1).equals(i)){
-                    count ++;
-                }else{
-                    if(max<count){
-                        max = count;
-                    }
-                    count = 1;
-                }
-            }
-            if(highestPower.keySet().contains(max)){
-                highestPower.get(max).add(t);
-            }else{
-                highestPower.put(max, Arrays.asList(t));
-            }
-        }
-        
-        String simplifiedExp = "";
-        for (Integer key: highestPower.keySet()){
-            for (Term t: highestPower.get(key)){
-                simplifiedExp = t.toString() + simplifiedExp;
-            }
-        }*/
-        SimplifyExpression simplifyExpression = new SimplifyExpression(e);
-        String simplifiedExpression = simplifyExpression.simplify();
-        //System.out.println(simplifiedExp.simplify());
+        List<Term> terms = e.simplify();
+        SimplifyExpression simplifyExpression = new SimplifyExpression();
+        String simplifiedExpression = simplifyExpression.simplify(terms);
         
         return simplifiedExpression;
         

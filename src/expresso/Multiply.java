@@ -1,7 +1,5 @@
 package expresso;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Multiply implements Expression {
@@ -26,16 +24,9 @@ public class Multiply implements Expression {
 
     @Override
     public List<Term> simplify() {
-        List<Term> simplifyTerms = new ArrayList<>();
-        for (Term t1: e1.simplify()){
-            for (Term t2: e2.simplify()){
-                List<String> vars = new ArrayList<String>(t1.getVariables());
-                vars.addAll(t2.getVariables());
-                Collections.sort(vars);
-                simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
-            }
-        }
-        return simplifyTerms;
+        SimplifyExpression simp = new SimplifyExpression();
+        
+        return simp.multiply(e1.simplify(),e2.simplify());
     }
     
     @Override

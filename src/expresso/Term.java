@@ -22,16 +22,18 @@ public class Term {
     
     @Override
     public String toString(){
-        //this.variables.removeAll(Arrays.asList(""));
-        //String.join("*", this.variables)
-
         Constant c = new Constant(this.constant);
         String term = c.toString() + "*";
         if (this.constant == 0) {
             return "" + 0;
         }
         if (this.variables.get(0).equals("")) {
-            return "" + c;
+            if (this.variables.size() == 1) {
+                return "" + c;
+            }
+            else {
+                this.variables.remove(0);
+            }
         }
         if (this.constant == 1.0) {
             term = "";
@@ -40,7 +42,6 @@ public class Term {
             term += var + "*";
         }
         return term.substring(0,term.length() - 1);
-        //return this.constant.toString() + "*" + this.variables;
     }
     
     @Override
@@ -48,7 +49,6 @@ public class Term {
         if (!(obj instanceof Term)) return false;
         Term that = (Term) obj;
         
-        //return this.constant == that.constant && this.variables.equals(that.variables);
         return this.variables.equals(that.variables);
     }
     
