@@ -2,7 +2,6 @@ package expresso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -40,7 +39,7 @@ public class Expressions {
      */
     public static String simplify(String expression) {
         Expression e = Expression.parse(expression);
-        List<Term> terms = new ArrayList<Term>(e.simplify());
+        /*List<Term> terms = new ArrayList<Term>(e.simplify());
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
         
         for (Term t: terms){
@@ -69,9 +68,12 @@ public class Expressions {
             for (Term t: highestPower.get(key)){
                 simplifiedExp = t.toString() + simplifiedExp;
             }
-        }
+        }*/
+        SimplifyExpression simplifyExpression = new SimplifyExpression(e);
+        String simplifiedExpression = simplifyExpression.simplify();
+        //System.out.println(simplifiedExp.simplify());
         
-        return simplifiedExp;
+        return simplifiedExpression;
         
     }
     

@@ -1,8 +1,6 @@
 package expresso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,32 +23,44 @@ public class Add implements Expression {
     @Override
     public List<Term> simplify() {
         List<Term> simplifyTerms = new ArrayList<>();
-        System.out.println(e1);
-        System.out.println(e2);
+        //System.out.println(e1);
+        //System.out.println(e2);
         for (Term t1: e1.simplify()){
-            boolean added = false;
+            //boolean added = false;
             for (Term t2: e2.simplify()){
-                List<String> vars1 = new ArrayList<>(t1.getVariables());
-                List<String> vars2 = new ArrayList<>(t2.getVariables());
+                List<String> vars = new ArrayList<>(t1.getVariables());
+                //List<String> vars2 = new ArrayList<>(t2.getVariables());
                 //Collections.sort(vars1);
                 //Collections.sort(vars2);
                 
-                if (vars1.equals(vars2)){
-                    added = true;
-                    simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars1));
-                    if(simplifyTerms.contains(t1)){
+                if (t1.equals(t2)){
+                    //added = true;
+                    simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars));
+                    /*if(simplifyTerms.contains(t1)){
                         simplifyTerms.remove(t1);
-                    }if(simplifyTerms.contains(t2)){
+                    }
+                    if(simplifyTerms.contains(t2)){
                         simplifyTerms.remove(t2);
                     }
                 }else{
                     simplifyTerms.add(t2);
-                    simplifyTerms.add(t1);
+                    simplifyTerms.add(t1);*/
                 }
             }
             
         }
-        System.out.println(simplifyTerms);
+        for (Term t: e1.simplify()) {
+            if (!simplifyTerms.contains(t)) {
+                simplifyTerms.add(t);
+            }
+        }
+        
+        for (Term t: e2.simplify()) {
+            if (!simplifyTerms.contains(t)) {
+                simplifyTerms.add(t);
+            }
+        }
+        //System.out.println(simplifyTerms);
         return simplifyTerms;
     }
     @Override

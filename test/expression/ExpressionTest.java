@@ -7,7 +7,6 @@ import java.util.List;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -16,9 +15,9 @@ import org.junit.Test;
 import expresso.Add;
 import expresso.Constant;
 import expresso.Expression;
-import expresso.Expressions;
 import expresso.ExpressionsTreeListener;
 import expresso.Multiply;
+import expresso.SimplifyExpression;
 import expresso.Term;
 import expresso.Variable;
 import expresso.parser.ExpressionLexer;
@@ -206,11 +205,12 @@ public class ExpressionTest {
         
         //String answer = Expressions.simplify("x*x");
         //System.out.println("ans:" + answer);
-        Expression e = Expression.parse("x+2+x");
-        List<Term> terms = e.simplify();
+        Expression e = Expression.parse("x*x*x+2+x+x+2+5+x+x*u+x+x*u");
+        SimplifyExpression simplifyExp = new SimplifyExpression(e);
+        /*List<Term> terms = e.simplify();
         for (Term t: terms){
             System.out.println(t.toString());
-        }
-        
+        }*/
+        System.out.println(simplifyExp.simplify());
     }
 }
