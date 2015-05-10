@@ -11,9 +11,9 @@ import java.util.TreeMap;
 
 public class SimplifyExpression {
     
-    public String simplify(List<Term> terms) {
+    
+    public Expression simplify(List<Term> terms) {
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
-        System.out.println(terms);
         for (Term t: terms){
             int max = 0;
             List<String> vars = t.getVariables();
@@ -49,8 +49,8 @@ public class SimplifyExpression {
                 simplifiedExp = t.toString() + "+" + simplifiedExp;
             }
         }
-        
-        return simplifiedExp.substring(0,simplifiedExp.length()-1);
+        simplifiedExp = simplifiedExp.substring(0,simplifiedExp.length()-1);
+        return Expression.parse(simplifiedExp);
     }
     
     public List<Term> add(List<Term> terms) {
@@ -89,4 +89,6 @@ public class SimplifyExpression {
         SimplifyExpression simp = new SimplifyExpression();
         return simp.add(simplifyTerms);
     }
+    
+
 }

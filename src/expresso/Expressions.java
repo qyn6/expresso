@@ -35,9 +35,9 @@ public class Expressions {
         
         List<Term> terms = e.simplify();
         SimplifyExpression simplifyExpression = new SimplifyExpression();
-        String simplifiedExpression = simplifyExpression.simplify(terms);
+        Expression simplifiedExpression = simplifyExpression.simplify(terms);
         
-        return simplifiedExpression;
+        return simplifiedExpression.toString();
         
     }
     

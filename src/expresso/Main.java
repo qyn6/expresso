@@ -3,6 +3,7 @@ package expresso;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * Console interface to the expression system.
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 public class Main {
     
     private static final String COMMAND_PREFIX = "!";
+    private static Expression exp;
     
     /**
      * Read expression and command inputs from the console and output results.
@@ -23,7 +25,7 @@ public class Main {
         while (true) {
             System.out.print("> ");
             final String input = in.readLine();
-            
+
             if (input.isEmpty()) {
                 return;
             }
@@ -31,6 +33,7 @@ public class Main {
             try {
                 final String output;
                 if (input.startsWith(COMMAND_PREFIX)) {
+                    System.out.println(input.substring(COMMAND_PREFIX.length()));
                     output = handleCommand(input.substring(COMMAND_PREFIX.length()));
                 } else {
                     output = handleExpression(input);
@@ -47,7 +50,7 @@ public class Main {
      */
     private static String handleExpression(String input) {
         String out = "";
-        Expression exp = Expression.parse(input); //make this current Expression
+        exp = Expression.parse(input); //make this current Expression
         
         if (exp != null) {
             return exp.toString();
@@ -60,7 +63,19 @@ public class Main {
      * TODO
      */
     private static String handleCommand(String substring) {
-        throw new RuntimeException("unimplemented");
+        if (substring.equals("simplify")){
+            List<Term> terms = exp.simplify();
+            SimplifyExpression simplifyExpression = new SimplifyExpression();
+            exp = simplifyExpression.simplify(terms);
+            return exp.toString().replaceAll("\\(|\\)", "");
+            
+        }else if (substring.startsWith("d/d")){
+            String diffVar = substring.replace("d/d", "");
+            exp = exp.differentiate(diffVar);
+            return exp.toString();
+        }else{
+            return "error";
+        }
     }
     
 }
