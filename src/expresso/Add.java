@@ -30,9 +30,9 @@ public class Add implements Expression {
         for (Term t: e2.simplify()) {
             simplifyTerms.add(t);
         }
-        SimplifyExpression simplify = new SimplifyExpression();
+        SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
         
-        return simplify.add(simplifyTerms);
+        return simplify.add();
     }
     @Override
     public Expression differentiate(String var) {
