@@ -21,25 +21,33 @@ public class SimplifyExpression {
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
         for (Term t: terms){
             int max = 0;
-            List<String> vars = t.getVariables();
+            List<String> variables = t.getVariables();
             int count = 1;
-            vars.removeAll(Arrays.asList(""));
-            if (vars.size() == 1) {
+            variables.removeAll(Arrays.asList(""));
+            /*if (variables.size() == 1) {
                 max = 1;
-            }
-            for (int i = 0; i<vars.size()-1; i++){
+            }*/
+            //System.out.println(variables);
+            for (int i = 0; i<variables.size()-1; i++){
                 
-                if (vars.get(i+1).equals(i)) {
+                if (variables.get(i+1).equals(variables.get(i))) {
                     count ++;
+                    //System.out.println(count);
                 }
                 else {
                     if(max<count){
+                        //System.out.println(count);
                         max = count;
                     }
                     count = 1;
                 }
+                if(max<count){
+                    //System.out.println(count);
+                    max = count;
+                }
             }
             if (highestPower.containsKey(max)) {
+                //System.out.println(max);
                 highestPower.get(max).add(t);
             }
             else {
@@ -52,11 +60,16 @@ public class SimplifyExpression {
         for (Integer key: highestPower.keySet()){
             for (Term t: highestPower.get(key)){
                 if (!t.toString().equals("0")) {
-                    simplifiedExp = simplifiedExp + "+" + t.toString();
+                    simplifiedExp =  t.toString() + "+" + simplifiedExp;
                 }
             }
         }
-        simplifiedExp = simplifiedExp.substring(1,simplifiedExp.length());
+        if (simplifiedExp.equals("")) {
+            simplifiedExp = "0";
+            return Expression.parse(simplifiedExp);
+        }
+        //System.out.println(simplifiedExp);
+        simplifiedExp = simplifiedExp.substring(0,simplifiedExp.length()-1);
         return Expression.parse(simplifiedExp);
     }
     
