@@ -200,18 +200,4 @@ public class ExpressionTest {
 
     }
     
-    @Test
-    public void testSimplify(){
-        
-        //String answer = Expressions.simplify("x*x");
-        //System.out.println("ans:" + answer);
-        Expression e = Expression.parse("(x+3)*((x+2)*z)");
-        List<Term> terms = e.simplify();
-        SimplifyExpression simplifyExp = new SimplifyExpression();
-        /*
-        for (Term t: terms){
-            System.out.println(t.toString());
-        }*/
-        System.out.println(simplifyExp.simplify(terms));
-    }
 }
