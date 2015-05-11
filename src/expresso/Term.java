@@ -28,12 +28,13 @@ public class Term {
             return "" + 0;
         }
         if (this.variables.get(0).equals("")) {
-            if (this.variables.size() == 1) {
+            return c.toString();
+            /*if (this.variables.size() == 1) {
                 return "" + c;
             }
             else {
                 this.variables.remove(0);
-            }
+            }*/
         }
         if (this.constant == 1.0) {
             term = "";

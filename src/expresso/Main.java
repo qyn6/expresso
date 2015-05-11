@@ -63,10 +63,10 @@ public class Main {
      * TODO
      */
     private static String handleCommand(String substring) {
-        if (substring.equals("simplify")){
+        if (substring.equals("s")){
             List<Term> terms = exp.simplify();
-            SimplifyExpression simplifyExpression = new SimplifyExpression();
-            exp = simplifyExpression.simplify(terms);
+            SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
+            exp = simplifyExpression.simplify();
             return exp.toString().replaceAll("\\(|\\)", "");
             
         }else if (substring.startsWith("d/d")){

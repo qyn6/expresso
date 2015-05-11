@@ -34,8 +34,8 @@ public class Expressions {
         Expression e = Expression.parse(expression);
         
         List<Term> terms = e.simplify();
-        SimplifyExpression simplifyExpression = new SimplifyExpression();
-        Expression simplifiedExpression = simplifyExpression.simplify(terms);
+        SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
+        Expression simplifiedExpression = simplifyExpression.simplify();
         
         return simplifiedExpression.toString().replaceAll("\\(|\\)", "");
         
