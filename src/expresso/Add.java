@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class represents an addition of two expressions
+ * Two add expressions are equal if both of their components are equal. So 1+x is equal to 1+x, 
+ * but 1+x is not equal to x+1.
  */
 public class Add implements Expression {
 

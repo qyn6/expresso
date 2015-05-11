@@ -50,8 +50,11 @@ public class Main {
      */
     private static String handleExpression(String input) {
         String out = "";
-        exp = Expression.parse(input); //make this current Expression
-        
+        try{
+            exp = Expression.parse(input); //make this current Expression
+        }catch(Exception e){
+            return "Parse error";
+        }
         if (exp != null) {
             return exp.toString();
         } else {
@@ -63,7 +66,7 @@ public class Main {
      * TODO
      */
     private static String handleCommand(String substring) {
-        if (substring.equals("s")){
+        if (substring.equals("simplify")){
             List<Term> terms = exp.simplify();
             SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
             exp = simplifyExpression.simplify();
@@ -71,6 +74,9 @@ public class Main {
             
         }else if (substring.startsWith("d/d")){
             String diffVar = substring.replace("d/d", "");
+            if (diffVar.equals("")){
+                return "ParseError: missing variable in derivative command";
+            }
             exp = exp.differentiate(diffVar);
             return exp.toString();
         }else{

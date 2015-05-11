@@ -2,6 +2,12 @@ package expresso;
 
 import java.util.List;
 
+/**
+ * This class represents a multiplication of two expressions.
+ * Two multiply expressions are equal if both of their components are equal, so 2*x is equal to 2*x,
+ * but 2*x is not equal to x*2
+ *
+ */
 public class Multiply implements Expression {
     
     private final Expression e1;
