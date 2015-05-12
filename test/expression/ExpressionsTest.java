@@ -216,7 +216,7 @@ public class ExpressionsTest {
      * differentiate complex expression and simplify
      */
     @Test
-    public void testDifferentiateComlexExpressionAndSimplify() {
+    public void testDifferentiateComplexExpressionAndSimplify() {
         String e = "(x+2*x*x)*(y+2)+x*z+4+z*(x+2)*(x+3)";
         String simplifiede = Expressions.simplify(Expressions.differentiate(e, "x"));
         
