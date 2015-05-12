@@ -1,18 +1,35 @@
-Types of inputs:
+Partition for types of inputs:
+Operations: + and * symbols
+Constants: nonnegative integer and floating-point numbers (e.g. 7 and 4.2)
+Variables: any sequence of letters (e.g. y and foo)
+Valid sets of parentheses (for grouping)
 
-
+> 3
+3
+> x
+x
+> foo
+foo
+> (90.3)
+90.3
+> (u)
+u
+> (variable)
+variable
+> (3+y)
+3+y
+> 9*8
+(9)*(8)
 > x * x * x
 x*x*x
+>x*y+(98*u)*(34*h)+h*h+h*(3+8+9+i)
+(x)*(y)+((98)*(u))*((34)*(h))+(h)*(h)+(h)*(3+8+9+i)
+> (3*h*r)*(r+3+r)*(r+k+0+3+3)*e*(var+var)
+((3)*((h)*(r)))*((r+3+r)*((r+k+0+3+3)*((e)*(var+var))))
 
-> !d/dx
-3*x*x
 
-> !d/dx
-6*x
 
-> !d/dy
-0
-
+Simplify
 > x + x * x * y + x
 x + x*x*y + x
 
@@ -24,3 +41,14 @@ x*x*y + 2*x
 
 > !simplify
 2*x*y + 2
+
+
+
+> !d/dx
+3*x*x
+
+> !d/dx
+6*x
+
+> !d/dy
+0
