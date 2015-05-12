@@ -1,8 +1,6 @@
 package expression;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -17,8 +15,6 @@ import expresso.Constant;
 import expresso.Expression;
 import expresso.ExpressionsTreeListener;
 import expresso.Multiply;
-import expresso.SimplifyExpression;
-import expresso.Term;
 import expresso.Variable;
 import expresso.parser.ExpressionLexer;
 import expresso.parser.ExpressionParser;
