@@ -66,6 +66,7 @@ public class AddTest {
         assertEquals("var+3+55.5+3.3+y+x", addTotal2.toString());
     }
     
+    //
     @Test
     public void testAddMulTerms(){
         Expression e1 = Expression.parse("x");
