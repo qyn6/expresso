@@ -35,7 +35,7 @@ public class Expressions {
         
         List<Term> terms = e.simplify();
         SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
-        Expression simplifiedExpression = simplifyExpression.simplify();
+        Expression simplifiedExpression = simplifyExpression.simplifyexpression();
         
         return simplifiedExpression.toString().replaceAll("\\(|\\)", "");
         

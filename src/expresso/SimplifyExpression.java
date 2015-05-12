@@ -17,7 +17,7 @@ public class SimplifyExpression {
         this.terms = terms;
     }
     
-    public Expression simplify() {
+    public Expression simplifyexpression() {
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
         for (Term t: terms){
             int max = 0;
