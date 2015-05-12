@@ -78,7 +78,7 @@ public class Main {
                 return "ParseError: missing variable in derivative command";
             }
             exp = exp.differentiate(diffVar);
-            return exp.toString();
+            return exp.toString().replaceAll("\\(|\\)", "");
         }else{
             return "error";
         }

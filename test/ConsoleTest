@@ -1,0 +1,23 @@
+> x * x * x
+x*x*x
+
+> !d/dx
+3*x*x
+
+> !d/dx
+6*x
+
+> !d/dy
+0
+
+> x + x * x * y + x
+x + x*x*y + x
+
+> !simplify
+x*x*y + 2*x
+
+> !d/dx
+1 + x*x*0 + (x*1 + x*1)*y + 1
+
+> !simplify
+2*x*y + 2

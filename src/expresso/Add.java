@@ -36,8 +36,10 @@ public class Add implements Expression {
         
         return new ArrayList<Term>(simplify.add());
     }
+    
     @Override
     public Expression differentiate(String var) {
+      //d(u+v)/dx = du/dx + dv/dx
         return new Add(this.e1.differentiate(var), this.e2.differentiate(var));
     }
  
