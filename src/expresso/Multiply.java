@@ -1,5 +1,6 @@
 package expresso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class Multiply implements Expression {
     public List<Term> simplify() {
         SimplifyExpression simp = new SimplifyExpression(e1.simplify());
         
-        return simp.multiply(e2.simplify());
+        return new ArrayList<Term>(simp.multiply(e2.simplify()));
     }
     
     @Override

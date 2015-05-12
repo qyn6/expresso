@@ -9,22 +9,29 @@ import java.util.List;
  */
 public class Variable implements Expression {
     
-    private String var;
+    // Abstraction Function:
+    //      variable represents a valid variable in the expression
+    // Rep Invariant:
+    //      variable is a sequence of lower-case letters with no whitespace between them
+    // Safety from Rep Exposure:
+    //      variable is private and final and immutable, it cannot be changed by the client
+    
+    private final String variable;
     /**
      * Represents a valid variable, any sequence of letters, cannot have whitespace between one variable
-     * @param var the variable in the expression
+     * @param variable the variable in the expression
      */
-    public Variable(String var) {
-        this.var = var;
+    public Variable(String variable) {
+        this.variable = variable;
     }
     
     @Override
     public List<Term> simplify() {
-        return new ArrayList<Term>(Arrays.asList(new Term(1.0, Arrays.asList(this.var))));
+        return new ArrayList<Term>(Arrays.asList(new Term(1.0, Arrays.asList(this.variable))));
     }
     @Override
     public Expression differentiate(String varDiff) {
-        if (varDiff.equals(var)){
+        if (varDiff.equals(variable)){
             return new Constant(1);
         }
         else{
@@ -36,17 +43,17 @@ public class Variable implements Expression {
     public boolean equals(Object obj) {
         if (!(obj instanceof Variable)) return false;
         Variable that = (Variable) obj;
-        return this.var.equals(that.var);
+        return this.variable.equals(that.variable);
     }
     
     @Override
     public String toString() {
-        return this.var;
+        return this.variable;
     }
     
     @Override
     public int hashCode() {
-        return this.var.hashCode();
+        return this.variable.hashCode();
     }
 
 

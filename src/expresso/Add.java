@@ -34,7 +34,7 @@ public class Add implements Expression {
         }
         SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
         
-        return simplify.add();
+        return new ArrayList<Term>(simplify.add());
     }
     @Override
     public Expression differentiate(String var) {

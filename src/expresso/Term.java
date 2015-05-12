@@ -10,6 +10,13 @@ import java.util.List;
  */
 public class Term {
     
+    // Abstraction Function:
+    //      
+    // Rep Invariant:
+    //      
+    // Safety from Rep Exposure:
+    //      
+    
     private final Double constant;
     private final List<String> variables;
     
