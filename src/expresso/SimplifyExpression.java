@@ -9,14 +9,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+//Convert a list of Terms into an Expression
 public class SimplifyExpression {
     
     private List<Term> terms;
     
+    /**
+     * Constructor for the class
+     * @param terms List of Terms that need to be changed into an Expression class
+     */
     public SimplifyExpression(List<Term> terms) {
         this.terms = terms;
     }
     
+    /**
+     * Main simplify function: Operates on the field 'terms'
+     * @return the Expression that represents the field 'terms'. Variables with the highest
+     *         order will be on the left, and the power will decrease with each
+     *         term to the right. There will be only one constant, if there are any at all.
+     *         Constants will be on the right.
+     */
     public Expression simplifyExpression() {
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
         for (Term t: terms){

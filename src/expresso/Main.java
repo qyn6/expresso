@@ -68,6 +68,7 @@ public class Main {
     private static String handleCommand(String substring) {
         if (substring.equals("simplify")){
             List<Term> terms = exp.simplify();
+            System.out.println(terms);
             SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
             exp = simplifyExpression.simplifyExpression();
             return exp.toString().replaceAll("\\(|\\)", "");
