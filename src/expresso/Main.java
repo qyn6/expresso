@@ -69,7 +69,7 @@ public class Main {
         if (substring.equals("simplify")){
             List<Term> terms = exp.simplify();
             SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
-            exp = simplifyExpression.simplifyexpression();
+            exp = simplifyExpression.simplifyExpression();
             return exp.toString().replaceAll("\\(|\\)", "");
             
         }else if (substring.startsWith("d/d")){

@@ -17,7 +17,7 @@ public class SimplifyExpression {
         this.terms = terms;
     }
     
-    public Expression simplifyexpression() {
+    public Expression simplifyExpression() {
         Map<Integer, List<Term>> highestPower = new TreeMap<>();
         for (Term t: terms){
             int max = 0;
@@ -63,7 +63,6 @@ public class SimplifyExpression {
             simplifiedExp = "0";
             return Expression.parse(simplifiedExp);
         }
-        System.out.println(highestPower);
         simplifiedExp = simplifiedExp.substring(0,simplifiedExp.length()-1);
         return Expression.parse(simplifiedExp);
     }
