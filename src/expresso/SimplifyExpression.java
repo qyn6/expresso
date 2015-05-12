@@ -24,30 +24,25 @@ public class SimplifyExpression {
             List<String> variables = t.getVariables();
             int count = 1;
             variables.removeAll(Arrays.asList(""));
-            /*if (variables.size() == 1) {
+            if (variables.size() == 1) {
                 max = 1;
-            }*/
-            //System.out.println(variables);
+            }
             for (int i = 0; i<variables.size()-1; i++){
                 
                 if (variables.get(i+1).equals(variables.get(i))) {
                     count ++;
-                    //System.out.println(count);
                 }
                 else {
                     if(max<count){
-                        //System.out.println(count);
                         max = count;
                     }
                     count = 1;
                 }
                 if(max<count){
-                    //System.out.println(count);
                     max = count;
                 }
             }
             if (highestPower.containsKey(max)) {
-                //System.out.println(max);
                 highestPower.get(max).add(t);
             }
             else {
@@ -68,48 +63,21 @@ public class SimplifyExpression {
             simplifiedExp = "0";
             return Expression.parse(simplifiedExp);
         }
-        //System.out.println(simplifiedExp);
+        System.out.println(highestPower);
         simplifiedExp = simplifiedExp.substring(0,simplifiedExp.length()-1);
         return Expression.parse(simplifiedExp);
     }
     
     public List<Term> add() {
-        /*List<Term> simplifyTerms = new ArrayList<>();
-
-        for (int i = 0; i < terms.size(); i ++){
-            Term t1 = terms.get(i);
-            System.out.println(t1);
-            Set<Term> removeTerms = new HashSet<Term>();
-            for (int j = i+1; j < terms.size(); j++){
-                Term t2 = terms.get(j);
-                List<String> vars = new ArrayList<>(t1.getVariables());
-                //List<String> vars2 = new ArrayList<>(t2.getVariables());
-
-                System.out.println(terms);
-                if (t1.equals(t2)){
-                    simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars));
-                    removeTerms.add(t1);
-                    removeTerms.add(t2);
-                }
-            }
-            terms.removeAll(removeTerms);
-        }
-        simplifyTerms.addAll(terms);
-        return simplifyTerms;*/
-        
         List<Term> simplifyTerms = new ArrayList<>();
 
         Set<Integer> removeTerms = new HashSet<Integer>();
         for (int i = 0; i < terms.size(); i ++){
             Term t1 = terms.get(i);
-            //System.out.println(t1);
             if (!removeTerms.contains(i)) {
                 for (int j = i+1; j < terms.size(); j++){
                     Term t2 = terms.get(j);
                     List<String> vars = new ArrayList<>(t1.getVariables());
-                    //List<String> vars2 = new ArrayList<>(t2.getVariables());
-
-                    //System.out.println(terms);
                     if (t1.equals(t2)){
                         simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars));
                         removeTerms.add(i);
