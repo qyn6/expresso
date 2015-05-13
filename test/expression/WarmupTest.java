@@ -12,11 +12,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.junit.Test;
 
-
-
-
-
-import expresso.Expression;
 import expresso.parser.WarmupBaseListener;
 import expresso.parser.WarmupLexer;
 import expresso.parser.WarmupListener;
@@ -30,11 +25,6 @@ public class WarmupTest {
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false; // make sure assertions are enabled with VM argument: -ea
-    }
-    
-    @Test
-    public void testExpression1() {
-        Expression a = Expression.parse("3*(");
     }
     
     @Test

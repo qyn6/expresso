@@ -3,6 +3,7 @@ package expression;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -85,7 +86,7 @@ public class MultiplyTest {
         Multiply m1 = new Multiply(add1, v1);
         List<Term> e = m1.simplify();
         
-        assertEquals("(1)*(x+3)+(x)*(1+0)",e.toString());
+        assertEquals(Arrays.asList("3*x","x*x").toString(),e.toString());
     }
     
     @Test
