@@ -89,9 +89,9 @@ public class SimplifyExpression {
     public List<Term> add(SimplifyExpression s2) {
         List<Term> simplifyTerms = new ArrayList<>();
         
-        for (Term t: s2.getTerms()) {
-            simplifyTerms.add(t);
-        }
+        simplifyTerms.addAll(this.terms);
+        simplifyTerms.addAll(s2.getTerms());
+        
         SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
         
         return new ArrayList<Term>(simplify.reduce());
@@ -130,7 +130,7 @@ public class SimplifyExpression {
      * 
      * @return
      */
-    public List<Term> reduce() {
+    private List<Term> reduce() {
         List<Term> simplifyTerms = new ArrayList<>();
 
         Set<Integer> removeTerms = new HashSet<Integer>();

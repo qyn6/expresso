@@ -105,7 +105,7 @@ public class SimplifyExpressionTest {
         
         Expression simplified = simpexp.simplifyExpression();
 
-        assertEquals("(4)*((y)*((y)*(x)))+(2)*((x)*((x)*(y)))", simplified.toString());
+        assertEquals("(4)*((x)*((y)*(y)))+(2)*((x)*((x)*(y)))", simplified.toString());
 
     }
     
@@ -135,16 +135,18 @@ public class SimplifyExpressionTest {
         
         Expression simplified = simpexp.simplifyExpression();
 
-        assertEquals("3.5*x*x*x+y*y*x+4*x", simplified.toString().replaceAll("\\(|\\)", ""));
+        assertEquals("3.5*x*x*x+x*y*y+4*x", simplified.toString().replaceAll("\\(|\\)", ""));
 
     }
     
     @Test
     public void simplifyZero(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(0.0, yyx));
-        terms.add(new Term(0.0, x));
-        terms.add(new Term(0.0, xxx));
+        terms2.add(new Term(0.0, x));
+        terms2.add(new Term(0.0, xxx));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
         
@@ -155,12 +157,15 @@ public class SimplifyExpressionTest {
     @Test
     public void addOnlyConstants(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(2.0, v1));
-        terms.add(new Term(4.0, v1));
+        terms2.add(new Term(4.0, v1));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
-
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
+        
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.add();
+        addTerms = simpexp.add(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(6.0, v1)));
         assertEquals(answer, addTerms);
@@ -170,12 +175,15 @@ public class SimplifyExpressionTest {
     @Test
     public void addSameVars(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(2.0, x));
-        terms.add(new Term(4.0, x));
+        terms2.add(new Term(4.0, x));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
-
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
+        
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.add();
+        addTerms = simpexp.add(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(6.0, x)));
         assertEquals(answer, addTerms);
@@ -185,12 +193,15 @@ public class SimplifyExpressionTest {
     @Test
     public void addDifferentVars(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(2.0, x));
-        terms.add(new Term(4.0, y));
+        terms2.add(new Term(4.0, y));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
-
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
+        
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.add();
+        addTerms = simpexp.add(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(2.0, x), new Term(4.0, y)));
         assertEquals(answer, addTerms);
@@ -199,13 +210,16 @@ public class SimplifyExpressionTest {
     @Test
     public void addConsecutiveTerms(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(2.0, x));
         terms.add(new Term(3.0, x));
-        terms.add(new Term(4.0, y));
+        terms2.add(new Term(4.0, y));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
-
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
+        
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.add();
+        addTerms = simpexp.add(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(5.0, x), new Term(4.0, y)));
         assertEquals(answer, addTerms);
@@ -214,14 +228,17 @@ public class SimplifyExpressionTest {
     @Test
     public void addNonConsecutiveTerms(){
         List<Term> terms = new ArrayList<>();
+        List<Term> terms2 = new ArrayList<>();
+        
         terms.add(new Term(2.0, x));
         terms.add(new Term(4.0, y));
-        terms.add(new Term(3.0, x));
-        terms.add(new Term(5.4, y));
+        terms2.add(new Term(3.0, x));
+        terms2.add(new Term(5.4, y));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
-
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
+        
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.add();
+        addTerms = simpexp.add(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(5.0, x), new Term(9.4, y)));
         assertEquals(answer, addTerms);
@@ -236,9 +253,10 @@ public class SimplifyExpressionTest {
         terms2.add(new Term(5.0, v1));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(10.0,v1)));
         assertEquals(answer, addTerms);
@@ -252,9 +270,10 @@ public class SimplifyExpressionTest {
         terms2.add(new Term(5.0, x));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(10.0,xx)));
         assertEquals(answer, addTerms);
@@ -268,9 +287,10 @@ public class SimplifyExpressionTest {
         terms2.add(new Term(5.0, y));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(10.0,xy)));
         assertEquals(answer, addTerms);
@@ -284,9 +304,10 @@ public class SimplifyExpressionTest {
         terms2.add(new Term(1.0, y));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(2.0,y)));
         assertEquals(answer, addTerms);
@@ -301,9 +322,10 @@ public class SimplifyExpressionTest {
         terms2.add(new Term(3.0, x));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(10.0,xy), new Term(6.0, xx)));
         assertEquals(answer, addTerms);
@@ -319,9 +341,10 @@ public class SimplifyExpressionTest {
         terms.add(new Term(3.0, x));
 
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(10.0,xy), new Term(6.0, xx)));
         assertEquals(answer, addTerms);
@@ -341,9 +364,10 @@ public class SimplifyExpressionTest {
 
         terms.add(new Term(2.0, v1));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(5.0,x), new Term(1.0, xx), new Term(6.0, v1)));
         assertEquals(answer, addTerms);
@@ -363,9 +387,10 @@ public class SimplifyExpressionTest {
 
         terms.add(new Term(2.0, v1));
         SimplifyExpression simpexp = new SimplifyExpression(terms);
+        SimplifyExpression simpexp2 = new SimplifyExpression(terms2);
 
         List<Term> addTerms = new ArrayList<>();
-        addTerms = simpexp.multiply(terms2);
+        addTerms = simpexp.multiply(simpexp2);
         
         List<Term> answer = new ArrayList<>(Arrays.asList(new Term(1.0,xy), new Term(3.0, y), new Term(2.0, x), new Term(6.0, v1)));
         assertEquals(answer, addTerms);
