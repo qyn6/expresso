@@ -11,12 +11,12 @@ import java.util.List;
 public class Add implements Expression {
 
     // Abstraction Function:
-    //      e1 represents the first term to add
-    //      e2 represents the second term to add
+    // e1 represents the first expression to be added
+    // e2 represents the second expression to be added
     // Rep Invariant:
-    //      true
+    // e1, e2 !=null
     // Safety from Rep Exposure:
-    //      e1 and e2 are private and final, it cannot be changed by the client
+    // instance variables are private and final, never returned
     
     private final Expression e1;
     private final Expression e2;
@@ -29,6 +29,7 @@ public class Add implements Expression {
     public Add(Expression e1, Expression e2){
         this.e1 = e1;
         this.e2 = e2;
+        checkRep();
     }
     
     @Override
@@ -61,5 +62,10 @@ public class Add implements Expression {
     @Override
     public String toString() {
         return this.e2.toString() + "+" + this.e1.toString();
+    }
+    
+    private void checkRep(){
+        assert !this.e1.equals(null);
+        assert !this.e2.equals(null);
     }
 }
