@@ -3,12 +3,16 @@ package expression;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import expresso.Add;
 import expresso.Constant;
+import expresso.Expression;
 import expresso.Multiply;
+import expresso.Term;
 import expresso.Variable;
 
 
@@ -74,6 +78,23 @@ public class MultiplyTest {
     public void mulCombined(){
         Multiply m = new Multiply(add1, new Multiply(add2, v2));
         assertEquals("((y)*(y+4))*(x+3)", m.toString());
+    }
+    
+    @Test
+    public void testSimplify(){
+        Multiply m1 = new Multiply(add1, v1);
+        System.out.println(m1.toString());
+        List<Term> e = m1.simplify();
+        System.out.println(e.toString());
+    }
+    
+    @Test
+    public void testDifferentiate(){
+        Multiply m1 = new Multiply(add1, v1);
+        Multiply m2 = new Multiply(v1, add1);
+        System.out.println(m1.toString());
+        Expression e = m1.differentiate(v1.toString());
+        System.out.println(e.toString());
     }
     
     @Test

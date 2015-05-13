@@ -86,7 +86,7 @@ public interface Expression {
     
     /**
      * Differentiate an expression with respect to a variable.
-     * @param variable the variable to differentiate by
+     * @param var the variable to differentiate by
      * @return expression's derivative with respect to variable; will be a valid expression
      **/
     public Expression differentiate(String var);

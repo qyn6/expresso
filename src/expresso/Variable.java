@@ -29,6 +29,7 @@ public class Variable implements Expression {
     public List<Term> simplify() {
         return new ArrayList<Term>(Arrays.asList(new Term(1.0, Arrays.asList(this.variable))));
     }
+    
     @Override
     public Expression differentiate(String varDiff) {
         if (varDiff.equals(variable)){

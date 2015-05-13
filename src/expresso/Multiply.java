@@ -26,7 +26,9 @@ public class Multiply implements Expression {
 
     @Override
     public Expression differentiate(String var) {
-        return new Add(new Multiply(this.e1.differentiate(var), this.e2), new Multiply(this.e1, this.e2.differentiate(var)));
+        //d(u*v)/dx = u*dv/dx + v*du/dx
+        return new Add(new Multiply(this.e1.differentiate(var), this.e2), 
+                new Multiply(this.e1, this.e2.differentiate(var)));
     }
 
     @Override

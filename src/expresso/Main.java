@@ -73,6 +73,7 @@ public class Main {
             return exp.toString().replaceAll("\\(|\\)", "");
             
         }else if (substring.startsWith("d/d")){
+            
             String diffVar = substring.replace("d/d", "");
             if (diffVar.equals("")){
                 return "ParseError: missing variable in derivative command";
