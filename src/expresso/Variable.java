@@ -23,10 +23,12 @@ public class Variable implements Expression {
      */
     public Variable(String variable) {
         this.variable = variable;
+        checkRep();
     }
     
     @Override
     public List<Term> simplify() {
+        checkRep();
         return new ArrayList<Term>(Arrays.asList(new Term(1.0, Arrays.asList(this.variable))));
     }
     
@@ -57,5 +59,7 @@ public class Variable implements Expression {
         return this.variable.hashCode();
     }
 
-
+    private void checkRep() {
+        assert !this.variable.equals("") && !this.variable.contains(" |[A-Z]");
+    }
 }

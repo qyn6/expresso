@@ -32,17 +32,11 @@ public class Add implements Expression {
     
     @Override
     public List<Term> simplify() {
-        List<Term> simplifyTerms = new ArrayList<>();
-        for (Term t: e1.simplify()) {
-            simplifyTerms.add(t);
-        }
         
-        for (Term t: e2.simplify()) {
-            simplifyTerms.add(t);
-        }
-        SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
+        SimplifyExpression s1 = new SimplifyExpression(e1.simplify());
+        SimplifyExpression s2 = new SimplifyExpression(e2.simplify());
         
-        return new ArrayList<Term>(simplify.add());
+        return new ArrayList<Term>(s1.add(s2));
     }
     
     @Override

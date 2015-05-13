@@ -57,8 +57,6 @@ public interface Expression {
         lexer.addErrorListener(new ExceptionThrowingErrorListener());
         
         ParseTree tree = parser.line();
-        //System.err.println(tree.toStringTree(parser));
-        //((RuleContext)tree).inspect(parser);
         
         ParseTreeWalker walker = new ParseTreeWalker();
         ExpressionsTreeListener treeWalker = new ExpressionsTreeListener();

@@ -2,7 +2,6 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.TreeMap;
  */
 public class SimplifyExpression {
     
-    private List<Term> terms;
+    private final List<Term> terms;
     
     /**
      * @param terms list of terms to be simplified in order of non increasing exponents
@@ -83,7 +82,55 @@ public class SimplifyExpression {
         return Expression.parse(simplifiedExp);
     }
     
-    public List<Term> add() {
+    /**
+     * Adds the terms in this.terms that have the same variables
+     * @return simplified list of terms
+     */
+    public List<Term> add(SimplifyExpression s2) {
+        List<Term> simplifyTerms = new ArrayList<>();
+        
+        simplifyTerms.addAll(this.terms);
+        simplifyTerms.addAll(s2.getTerms());
+        
+        SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
+        
+        return new ArrayList<Term>(simplify.reduce());
+    }
+    
+    /**
+     * Multiply one simplified expression to another
+     * @param terms2 list of valid terms to which this.terms is multiplied
+     * @return simplified list of terms after multiplication of the two lists
+     */
+    public List<Term> multiply(SimplifyExpression s2) {
+        List<Term> terms2 = s2.getTerms();
+        List<Term> simplifyTerms = new ArrayList<>();
+        for (Term t1: terms){
+            for (Term t2: terms2){
+                List<String> vars = new ArrayList<String>(t1.getVariables());
+                List<String> vars2 = new ArrayList<String>(t2.getVariables());
+                
+                if (vars.contains("")) {
+                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars2));
+                }
+                else if (vars2.contains("")) {
+                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
+                }
+                else {
+                    vars.addAll(vars2);
+                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
+                }
+            }
+        }
+        SimplifyExpression simp = new SimplifyExpression(simplifyTerms);
+        return new ArrayList<Term>(simp.reduce());
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    private List<Term> reduce() {
         List<Term> simplifyTerms = new ArrayList<>();
 
         Set<Integer> removeTerms = new HashSet<Integer>();
@@ -106,33 +153,15 @@ public class SimplifyExpression {
                 simplifyTerms.add(terms.get(i));
             }
         }
-        return simplifyTerms;
+        return new ArrayList<Term>(simplifyTerms);
     }
     
-    public List<Term> multiply(List<Term> terms2) {
-        List<Term> simplifyTerms = new ArrayList<>();
-        for (Term t1: terms){
-            for (Term t2: terms2){
-                List<String> vars = new ArrayList<String>(t1.getVariables());
-                List<String> vars2 = new ArrayList<String>(t2.getVariables());
-                Collections.sort(vars);
-                Collections.sort(vars2);
-                if (vars.contains("")) {
-                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars2));
-                }
-                else if (vars2.contains("")) {
-                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
-                }
-                else {
-                    vars.addAll(vars2);
-                    Collections.sort(vars);
-                    simplifyTerms.add(new Term(t1.getConstant()*t2.getConstant(), vars));
-                }
-            }
-        }
-        SimplifyExpression simp = new SimplifyExpression(simplifyTerms);
-        return simp.add();
+    /**
+     * Retrieve list of terms
+     * @return list of terms
+     */
+    private List<Term> getTerms() {
+        return new ArrayList<Term>(this.terms);
     }
     
-
 }

@@ -41,9 +41,10 @@ public class Multiply implements Expression {
 
     @Override
     public List<Term> simplify() {
-        SimplifyExpression simp = new SimplifyExpression(e1.simplify());
+        SimplifyExpression s1 = new SimplifyExpression(e1.simplify());
+        SimplifyExpression s2 = new SimplifyExpression(e2.simplify());
         
-        return new ArrayList<Term>(simp.multiply(e2.simplify()));
+        return new ArrayList<Term>(s1.multiply(s2));
     }
     
     @Override

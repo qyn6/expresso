@@ -1,6 +1,7 @@
 package expresso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,12 +26,14 @@ public class Term {
     /**
      * Creates a Term in the expression
      * @param constant the constant in the term, must be non negative
-     * @param variables the variable(s) in the term. a term with no variables is represented by the empty string ""
+     * @param variables list of the variable(s) in the term. a term with no variables is represented by the empty string ""
      * list may not be empty
      */
     public Term(Double constant, List<String> variables){
         this.constant = constant;
         this.variables = variables;
+        
+        Collections.sort(this.variables);
         checkRep();
     }
 
@@ -76,7 +79,7 @@ public class Term {
     }
     
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return this.variables.hashCode();
     }
     

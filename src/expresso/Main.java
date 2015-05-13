@@ -32,9 +32,10 @@ public class Main {
             
             try {
                 final String output;
-                if (input.startsWith(COMMAND_PREFIX)) {
-                    System.out.println(input.substring(COMMAND_PREFIX.length()));
-                    output = handleCommand(input.substring(COMMAND_PREFIX.length()));
+                final String inputNoSpaces = input.replaceAll(" ", "");
+                if (inputNoSpaces.startsWith(COMMAND_PREFIX)) {
+                    System.out.println(inputNoSpaces.substring(COMMAND_PREFIX.length()));
+                    output = handleCommand(inputNoSpaces.substring(COMMAND_PREFIX.length()));
                 } else {
                     output = handleExpression(input);
                 }
@@ -45,13 +46,19 @@ public class Main {
         }
     }
     
-
+    /**
+     * Handle an input expression from the console, with operations * and +
+     *      and optional parenthesis. Save the latest expression in case
+     *      operations are performed on it.
+     * @param input String representing the expression
+     * @return a String representing the expression
+     */
     private static String handleExpression(String input) {
         String out = "";
         try{
             exp = Expression.parse(input); //make this current Expression
         }catch(Exception e){
-            return "Parse error";
+            return "ParseError: Invalid input";
         }
         if (exp != null) {
             return exp.toString();
@@ -60,8 +67,21 @@ public class Main {
         }
     }
     
-
+    /**
+     * Handle an input command from the console, denoted by a '!' character followed
+     *      by either a 'simplify' or 'd/dx' where x is the variable to differentiate
+     *      by.
+     * @param substring the input command
+     * @return a String representing the expression created by performing the input
+     *      command on the last saved expression. If there is no valid expression, or
+     *      if there is a missing variable in the derivative command, or if the substring
+     *      is invalid, we return "Error" with an optiona explanation.
+     */
     private static String handleCommand(String substring) {
+        if (exp == null) {
+            return "error: You haven't entered a valid expression yet!";
+        }
+            
         if (substring.equals("simplify")){
             List<Term> terms = exp.simplify();
             SimplifyExpression simplifyExpression = new SimplifyExpression(terms);
