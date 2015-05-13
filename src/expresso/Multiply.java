@@ -10,6 +10,13 @@ import java.util.List;
  *
  */
 public class Multiply implements Expression {
+    // Abstraction Function:
+    // e1 represents the first expression to be multiplied
+    // e2 represents the second expression to be multiplied
+    // Rep Invariant:
+    // e1, e2 !=null
+    // Safety from Rep Exposure:
+    // instance variables are private and final, never returned
     
     private final Expression e1;
     private final Expression e2;
@@ -22,6 +29,7 @@ public class Multiply implements Expression {
     public Multiply(Expression e1, Expression e2) {
         this.e1 = e1;
         this.e2 = e2;
+        checkRep();
     }
 
     @Override
@@ -55,5 +63,8 @@ public class Multiply implements Expression {
         return "(" + this.e2.toString() + ")*(" + this.e1.toString()+")";
     }
 
- 
+    private void checkRep(){
+        assert !this.e1.equals(null);
+        assert !this.e2.equals(null);
+    }
 }

@@ -75,6 +75,11 @@ public class Term {
         return this.variables.equals(that.variables) && this.constant.equals(that.constant);
     }
     
+    @Override
+    public int hashCode(){
+        return this.variables.hashCode();
+    }
+    
     private void checkRep() {
         assert this.constant >= 0.0;
     }
