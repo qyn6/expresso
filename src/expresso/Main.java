@@ -32,9 +32,10 @@ public class Main {
             
             try {
                 final String output;
-                if (input.startsWith(COMMAND_PREFIX)) {
-                    System.out.println(input.substring(COMMAND_PREFIX.length()));
-                    output = handleCommand(input.substring(COMMAND_PREFIX.length()));
+                final String inputNoSpaces = input.replaceAll(" ", "");
+                if (inputNoSpaces.startsWith(COMMAND_PREFIX)) {
+                    System.out.println(inputNoSpaces.substring(COMMAND_PREFIX.length()));
+                    output = handleCommand(inputNoSpaces.substring(COMMAND_PREFIX.length()));
                 } else {
                     output = handleExpression(input);
                 }
@@ -96,7 +97,7 @@ public class Main {
             exp = exp.differentiate(diffVar);
             return exp.toString();
         }else{
-            return "Error";
+            return "error";
         }
     }
     

@@ -3,6 +3,7 @@ Operations: + and * symbols
 Constants: nonnegative integer and floating-point numbers (e.g. 7 and 4.2)
 Variables: any sequence of letters (e.g. y and foo)
 Valid sets of parentheses (for grouping)
+Edge case: Spaces before variables should be fine
 
 > 3
 3
