@@ -9,7 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-//Convert a list of Terms into an Expression
+/**
+ * Converts a list of terms into a simplified expression.
+ *
+ */
 public class SimplifyExpression {
     
     private List<Term> terms;

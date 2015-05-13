@@ -11,11 +11,13 @@ import java.util.List;
 public class Term {
     
     // Abstraction Function:
-    //      
+    // constant represents the coefficient in the term
+    // variable represents the variable in the term
     // Rep Invariant:
-    //      
+    // constant >= 0
     // Safety from Rep Exposure:
-    //      
+    // instance variables are private and final, not returned except with getter methods
+    // that return a copy of the variable. 
     
     private final Double constant;
     private final List<String> variables;

@@ -45,9 +45,7 @@ public class Main {
         }
     }
     
-    /**
-     * TODO
-     */
+
     private static String handleExpression(String input) {
         String out = "";
         try{
@@ -62,9 +60,7 @@ public class Main {
         }
     }
     
-    /**
-     * TODO
-     */
+
     private static String handleCommand(String substring) {
         if (substring.equals("simplify")){
             List<Term> terms = exp.simplify();
