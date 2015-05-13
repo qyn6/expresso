@@ -29,7 +29,7 @@ public class SimplifyExpression {
      * Main simplify function: Operates on the field 'terms'
      * @return the Expression that represents the field 'terms'. Variables with the highest
      *         order will be on the left, and the power will decrease with each
-     *         term to the right. There will be only one constant, if there are any at all.
+     *         term to the right. There will be only one constant for each term, if there are any at all.
      *         Constants will be on the right.
      */
     public Expression simplifyExpression() {
@@ -83,7 +83,7 @@ public class SimplifyExpression {
     }
     
     /**
-     * Adds the terms in this.terms that have the same variables
+     * Adds the terms in one simplifyExpression to another simplifyExpression 
      * @return simplified list of terms
      */
     public List<Term> add(SimplifyExpression s2) {
@@ -127,8 +127,9 @@ public class SimplifyExpression {
     }
     
     /**
-     * 
-     * @return
+     * Simplifies the list of terms in a simplifyExpression by adding the coefficients of terms
+     * that have the same variables. 
+     * @return the list of simplified terms
      */
     private List<Term> reduce() {
         List<Term> simplifyTerms = new ArrayList<>();
