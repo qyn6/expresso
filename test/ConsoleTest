@@ -131,6 +131,26 @@ d/dx
 > !d/dx
 d/dx
 (1)*(y)+(x)*(0)
-> !simplify
+> !simplifyx
 simplify
 y
+
+
+
+Errors:
+If at the beginning, you type in a !simplify or !d/d_
+> !simplify
+simplify
+error: You haven't entered a valid expression yet!
+> !d/dx
+d/dx
+error: You haven't entered a valid expression yet!
+> 3y
+ParseError: Invalid input
+> (3*x
+ParseError: Invalid input
+> x*y)
+ParseError: Invalid input
+> !d/d
+d/d
+ParseError: missing variable in derivative command
