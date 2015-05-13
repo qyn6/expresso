@@ -13,6 +13,11 @@ public class SimplifyExpression {
     
     private List<Term> terms;
     
+    /**
+     * @param terms list of terms to be simplified in order of non increasing exponents
+     * list must not have multiple terms with the same variables, each term must be in its own simplified form
+     * each term in the list must have variables in sorted order 
+     */
     public SimplifyExpression(List<Term> terms) {
         this.terms = terms;
     }
@@ -77,7 +82,7 @@ public class SimplifyExpression {
                 for (int j = i+1; j < terms.size(); j++){
                     Term t2 = terms.get(j);
                     List<String> vars = new ArrayList<>(t1.getVariables());
-                    if (t1.equals(t2)){
+                    if (t1.getVariables().equals(t2.getVariables())){
                         simplifyTerms.add(new Term(t1.getConstant() + t2.getConstant(), vars));
                         removeTerms.add(i);
                         removeTerms.add(j);

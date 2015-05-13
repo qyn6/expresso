@@ -69,7 +69,7 @@ public class Term {
         if (!(obj instanceof Term)) return false;
         Term that = (Term) obj;
         
-        return this.variables.equals(that.variables);
+        return this.variables.equals(that.variables) && this.constant.equals(that.constant);
     }
     
 }
