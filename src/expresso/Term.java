@@ -31,6 +31,7 @@ public class Term {
     public Term(Double constant, List<String> variables){
         this.constant = constant;
         this.variables = variables;
+        checkRep();
     }
 
     /**
@@ -72,6 +73,10 @@ public class Term {
         Term that = (Term) obj;
         
         return this.variables.equals(that.variables) && this.constant.equals(that.constant);
+    }
+    
+    private void checkRep() {
+        assert this.constant >= 0.0;
     }
     
 }
