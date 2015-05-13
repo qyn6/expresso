@@ -10,8 +10,17 @@ import java.util.List;
  */
 public class Add implements Expression {
 
+    // Abstraction Function:
+    //      e1 represents the first term to add
+    //      e2 represents the second term to add
+    // Rep Invariant:
+    //      true
+    // Safety from Rep Exposure:
+    //      e1 and e2 are private and final, it cannot be changed by the client
+    
     private final Expression e1;
     private final Expression e2;
+    
     /**
      * creates an instance of addition
      * @param e1 first Expression to be added
@@ -46,7 +55,7 @@ public class Add implements Expression {
     
     @Override
     public int hashCode() {
-        return this.e2.hashCode();
+        return this.e1.hashCode()+this.e2.hashCode();
     }
     
     @Override

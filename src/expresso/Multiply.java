@@ -48,7 +48,7 @@ public class Multiply implements Expression {
     
     @Override
     public int hashCode() {
-        return this.e1.hashCode();
+        return this.e1.hashCode()+this.e2.hashCode();
     }
     
     @Override
