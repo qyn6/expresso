@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import expresso.Constant;
-import expresso.Variable;
 
 public class ConstantTest {
     //Test constructor method

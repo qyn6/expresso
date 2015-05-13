@@ -17,9 +17,6 @@ import org.junit.Test;
 
 
 import expresso.Expression;
-import expresso.ExpressionsTreeListener;
-import expresso.parser.ExpressionLexer;
-import expresso.parser.ExpressionParser;
 import expresso.parser.WarmupBaseListener;
 import expresso.parser.WarmupLexer;
 import expresso.parser.WarmupListener;

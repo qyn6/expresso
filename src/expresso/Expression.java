@@ -31,12 +31,6 @@ public interface Expression {
     //    + Add (e1, e2: Expression)
     //    + Multiply(e1, e2: Expression)
     
-    /*walking tree
-     * do in order traversal
-     * initiate constant or var when it sees it on the root with the children as values
-     * initiate operation when it sees mul or add
-     * if it sees parens on the root, then it creates the term first and adds parenthesis on the side
-     */
     /**
      * Parse an expression. All possible operations are represented by the following symbols:
      *      +,*

@@ -32,6 +32,20 @@ import expresso.parser.ExpressionParser;
  * add within multiply, multiply within add
  * nested parenthesis
  * invalid inputs
+ * 
+ * differentiate
+ * Partitions:
+ * differentiate w.r.t.: same variable, different variable
+ * expression contains: constant, one variable, multiple variables
+ * chain rule
+ * add rule
+ * chain rule + add rule
+ * 
+ * simplify
+ * Partitions:
+ * expression contains: no additions, no multiplications, addition, multiplication, multiplication of 2 additions
+ * expression to differentiate and then simplify contains: constants, variables
+ * equal terms: placed next to each other, away from each other
  */
 public class ExpressionTest {
 
@@ -327,7 +341,7 @@ public class ExpressionTest {
     }
     
     /**
-     * multiplications within addition
+     * multiplication of two additions
      */
     @Test
     public void testSimplifyAdditionWithinMultiplication() {

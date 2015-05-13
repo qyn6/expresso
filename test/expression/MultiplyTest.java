@@ -83,18 +83,17 @@ public class MultiplyTest {
     @Test
     public void testSimplify(){
         Multiply m1 = new Multiply(add1, v1);
-        System.out.println(m1.toString());
         List<Term> e = m1.simplify();
-        System.out.println(e.toString());
+        
+        assertEquals("(1)*(x+3)+(x)*(1+0)",e.toString());
     }
     
     @Test
     public void testDifferentiate(){
         Multiply m1 = new Multiply(add1, v1);
-        Multiply m2 = new Multiply(v1, add1);
-        System.out.println(m1.toString());
         Expression e = m1.differentiate(v1.toString());
-        System.out.println(e.toString());
+        
+        assertEquals("(1)*(x+3)+(x)*(1+0)",e.toString());
     }
     
     @Test

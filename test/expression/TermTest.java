@@ -21,9 +21,6 @@ import expresso.Term;
  *
  */
 public class TermTest {
-    private static double c1;
-    private static double c2;
-    private static double c3;
 
     private static List<String>  v1;
     private static List<String>  v2;
@@ -32,9 +29,7 @@ public class TermTest {
     
     @BeforeClass
     public static void setUpBeforeClass() {
-        c1 = 1;
-        c2 = 3.4;
-        c3 = 5;
+
         v1 = new ArrayList<String>(Arrays.asList(""));
         v2 = new ArrayList<String>(Arrays.asList("x"));
         v3 = new ArrayList<String>(Arrays.asList("x", "y"));

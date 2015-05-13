@@ -160,7 +160,7 @@ public class ExpressionsTest {
     }
     
     /**
-     * multiplications within addition
+     * additions within multiplication
      */
     @Test
     public void testSimplifyAdditionWithinMultiplication() {

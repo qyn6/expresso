@@ -11,12 +11,12 @@ import java.util.List;
 public class Add implements Expression {
 
     // Abstraction Function:
-    // e1 represents the first expression to be added
-    // e2 represents the second expression to be added
+    //      e1 represents the first expression to be added
+    //      e2 represents the second expression to be added
     // Rep Invariant:
-    // e1, e2 !=null
+    //      e1, e2 !=null
     // Safety from Rep Exposure:
-    // instance variables are private and final, never returned
+    //      instance variables are private and final, never returned
     
     private final Expression e1;
     private final Expression e2;

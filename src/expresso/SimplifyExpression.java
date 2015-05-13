@@ -14,6 +14,13 @@ import java.util.TreeMap;
  */
 public class SimplifyExpression {
     
+    // Abstraction Function:
+    //      terms represents the list of the terms in the simplified expression
+    // Rep Invariant:
+    //      terms is not empty
+    // Safety from Rep Exposure:
+    //      terms is private and final, a copy of it is returned
+    
     private final List<Term> terms;
     
     /**
@@ -23,6 +30,7 @@ public class SimplifyExpression {
      */
     public SimplifyExpression(List<Term> terms) {
         this.terms = terms;
+        checkRep();
     }
     
     /**
@@ -79,6 +87,7 @@ public class SimplifyExpression {
             return Expression.parse(simplifiedExp);
         }
         simplifiedExp = simplifiedExp.substring(0,simplifiedExp.length()-1);
+        checkRep();
         return Expression.parse(simplifiedExp);
     }
     
@@ -93,7 +102,7 @@ public class SimplifyExpression {
         simplifyTerms.addAll(s2.getTerms());
         
         SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
-        
+        checkRep();
         return new ArrayList<Term>(simplify.reduce());
     }
     
@@ -154,6 +163,7 @@ public class SimplifyExpression {
                 simplifyTerms.add(terms.get(i));
             }
         }
+        checkRep();
         return new ArrayList<Term>(simplifyTerms);
     }
     
@@ -165,4 +175,24 @@ public class SimplifyExpression {
         return new ArrayList<Term>(this.terms);
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof SimplifyExpression)) return false;
+        SimplifyExpression that = (SimplifyExpression) obj;
+        return this.terms.equals(that.terms);
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.terms.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return this.simplifyExpression().toString();
+    }
+    
+    private void checkRep() {
+        assert !this.terms.isEmpty();
+    }
 }
