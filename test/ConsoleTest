@@ -29,26 +29,108 @@ x*x*x
 
 
 
-Simplify
+Partitions for Simplify:
+-Combine constants
+-Combine variables
+-FOILs
+Edge cases: 0's
+
 > x + x * x * y + x
 x + x*x*y + x
-
 > !simplify
 x*x*y + 2*x
 
-> !d/dx
-1 + x*x*0 + (x*1 + x*1)*y + 1
-
+> v+v+9+j
+v+v+9+j
 > !simplify
-2*x*y + 2
+simplify
+j+2*v+9
 
+> (7+x)*(8+x)
+(7+x)*(8+x)
+> !simplify
+simplify
+x*x+15*x+56
 
+> 7*x+(9+x)*2
+(7)*(x)+(9+x)*(2)
+> !simplify
+simplify
+9*x+18
+> 
 
-> !d/dx
-3*x*x
+> (x+y+x+y+2*7)*(9+x+y+x)
+(x+y+x+y+(2)*(7))*(9+x+y+x)
+> !simplify
+simplify
+2*y*y+4*x*x+32*y+46*x+6*x*y+126
 
-> !d/dx
-6*x
-
-> !d/dy
+> (0+9+u+x)*0
+(0+9+u+x)*(0)
+> !simplify
+simplify
 0
+
+
+
+Partition for Differentiate
+d(u*v)/dx
+d(u+v)/dx
+
+> x*x*x
+(x)*((x)*(x))
+> !d/dx
+d/dx
+(1)*((x)*(x))+(x)*((1)*(x)+(x)*(1))
+> !simplify
+simplify
+3*x*x
+> !d/dx
+d/dx
+(0)*((x)*(x))+(3)*((1)*(x)+(x)*(1))
+> !simplify
+simplify
+6*x
+> !d/dx
+d/dx
+(0)*(x)+(6)*(1)
+> !simplify
+simplify
+6
+> !d/dx
+d/dx
+0
+> !simplify
+simplify
+0
+> !d/dx
+d/dx
+0
+> !simplify
+simplify
+0
+
+
+> 9*x*x*x*x+4*x*x+3*x
+(9)*((x)*((x)*((x)*(x))))+(4)*((x)*(x))+(3)*(x)
+> !d/dx
+d/dx
+(0)*((x)*((x)*((x)*(x))))+(9)*((1)*((x)*((x)*(x)))+(x)*((1)*((x)*(x))+(x)*((1)*(x)+(x)*(1))))+(0)*((x)*(x))+(4)*((1)*(x)+(x)*(1))+(0)*(x)+(3)*(1)
+> !simplify
+simplify
+36*x*x*x+8*x+3
+
+> y
+y
+> !d/dx
+d/dx
+0
+
+> x*y
+(x)*(y)
+> !d/dx
+d/dx
+(1)*(y)+(x)*(0)
+> !simplify
+simplify
+y
