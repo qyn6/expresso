@@ -72,13 +72,13 @@ public class TermTest {
     @Test
     public void testEquals(){
         Term t = new Term(5.0,v3);
-        Term t2 = new Term(3.4, v3);
+        Term t2 = new Term(5.0, v3);
         assertEquals(t, t2);
     }
     @Test
     public void testNotEquals(){
         Term t = new Term(3.2,v2);
-        Term t2 = new Term(3.4, v3);
+        Term t2 = new Term(3.2, v3);
         assertFalse(t.equals(t2));
     }
 }
