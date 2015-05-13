@@ -34,7 +34,7 @@ public class Add implements Expression {
         }
         SimplifyExpression simplify = new SimplifyExpression(simplifyTerms);
         
-        return new ArrayList<Term>(simplify.add());
+        return new ArrayList<Term>(simplify.reduce());
     }
     
     @Override
